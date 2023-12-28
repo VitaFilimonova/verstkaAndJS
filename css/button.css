@@ -1,28 +1,27 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;900&display=swap");
 
 .button {
-    /*display: flex;*/
-    background-color: var(--primary-01);
-    border-radius: 16px;
-    color: var(--grayscale-07);
-    /*transition: background-color 0.2s ease-in;*/
-    padding: 16px 30px;
-    justify-content: center;
-    align-items: center;
-    gap: 14px;
-    /*box-sizing: content-box;*/
-/*position: relative;*/
+  /*display: flex;*/
+  background-color: var(--primary-01);
+  border-radius: 16px;
+  color: var(--grayscale-07);
+  /*transition: background-color 0.2s ease-in;*/
+  padding: 16px 30px;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+  /*box-sizing: content-box;*/
+  /*position: relative;*/
 
-    font-family: var(--font-semibold);
-    font-size: 20px;
-    font-weight: 600;
-
+  font-family: var(--font-semibold);
+  font-size: 20px;
+  font-weight: 600;
 }
 
 .button:hover {
-    background-color: var(--grayscale-01);
+  background-color: var(--grayscale-01);
 }
 
 button:disabled {
-    background-color: var(--grayscale-03);
+  background-color: var(--grayscale-03);
 }
