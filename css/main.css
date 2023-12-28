@@ -1,6 +1,6 @@
 @import "reset.css";
 @import "button.css";
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;900&display=swap');
 
 :root {
     --grayscale-00: #000000;
@@ -25,7 +25,6 @@
 }
 
 
-
 body {
     background: var(--grayscale-01);
 }
@@ -33,7 +32,7 @@ body {
 .header {
     display: flex;
     flex-direction: column;
-
+    margin-bottom: 70px;
 }
 
 .header__menu {
@@ -45,7 +44,6 @@ body {
     background: var(--secondary-02);
     padding: 0 60px;
     height: 38px;
-
 
 
 }
@@ -75,7 +73,7 @@ body {
 
 .logo {
     color: var(--grayscale-07);
-display: flex;
+    display: flex;
     justify-content: center;
     align-items: center;
 
@@ -85,25 +83,31 @@ display: flex;
     font-size: 37px;
     font-weight: 600;
     line-height: 17px;
- }
+}
 
-.banner {
+#Banner
+.banner-section {
+    position: relative;
 
+}
+
+.container {
     display: flex;
-    flex-direction: row;
+    align-items: center;
     justify-content: space-between;
+    padding: 0 60px;
     margin-bottom: 100px;
 }
 
-.banner__description {
-    box-sizing: border-box;
-    width: 30%;
+.banner {
+    max-width: 671px;
+    /*box-sizing: border-box;*/
+    /*width: 30%;*/
     display: flex;
     flex-direction: column;
-    align-content: space-between;
-    text-align: left;
-    justify-content: center;
-    gap: 50px;
+    /*align-content: space-between;*/
+    /*text-align: left;*/
+    /*justify-content: center;*/
     color: var(--grayscale-07, #FFF);
     margin-left: 110px;
 
@@ -118,17 +122,115 @@ display: flex;
 .banner h1 {
     font-size: 96px;
     line-height: 106%;
+    margin-bottom: 20px;
+    font-family: Outfit;
+    font-style: normal;
+    font-weight: 700;
+
+}
+
+.banner__text {
+    margin-bottom: 40px;
 }
 
 .banner__pictures {
-position: relative;
-    justify-content: center;
+    position: absolute;
+    /*width: 60%;*/
+    /*height: 100%;*/
+    width: 595px;
+    height: 529px;
+    flex-shrink: 0;
+    /*top: 0;*/
+    right: 0;
+}
+
+#About
+.about-section {
+    margin-bottom: 100px;
+}
+
+.title-section {
+    color: var(--grayscale-07);
+
+
+    font-family: Outfit;
+    font-size: 96px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 106%; /* 101.76px */
+}
+
+.about__cards {
+    display: grid;
+    grid-template-columns: 200px 50px 200px;
+    grid-template-rows: 180px auto 180px;
+    column-gap: 80px;
+    row-gap: 70px;
+}
+
+.card {
+display: flex;
+    flex-direction: column;
+    color: var(--grayscale-07);
+    max-width: 336px;
+}
+
+.card__img {
+    width: 100px;
+    height: 100px;
+}
+
+.card__header {
+    font-family: Outfit;
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 106%;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.card__text {
+    font-family: Outfit;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 120%;
 }
 
 
-.pictures__girl {
-    z-index: 99;
-    position: absolute;
-    /*top: -15px;*/
-    left: 0;
+#Blocks
+
+.blocks-section {
+
+}
+
+.blocks {
+    background-color: var(--primary-01);
+    color: var(--grayscale-07);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+column-gap: 100px;
+    align-items: center;
+    padding: 40px 0;
+    margin-bottom: 100px;
+}
+
+.blocks__header {
+    font-family: Outfit;
+    font-size: 64px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 106%;
+margin-bottom: 16px;
+    max-width: 160px;
+}
+
+.blocks__text {
+    font-family: Outfit;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 120%;
 }
