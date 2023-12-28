@@ -1,11 +1,14 @@
 @import "reset.css";
 @import "button.css";
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;900&display=swap');
+@import "../fonts/fonts.css";
+
+/*@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;900&display=swap');*/
 
 :root {
     --grayscale-00: #000000;
     --grayscale-01: #181818;
     --grayscale-02: #444444;
+    --grayscale-03:#B9B9B9;
     --grayscale-07: #FFFFFF;
     --primary-00: #7B31D4;
     --primary-01: #954CED;
@@ -13,20 +16,24 @@
     --secondary-02: #FFAA4C;
     --additional-01: #FF6C2D;
 
+    --font-bold: "Outfit Bold";
+    --font-semibold: "Outfit SemiBold";
+    --font-regular: "Outfit Regular";
+    --font-medium: "Outfit Medium";
+    --font-light: "Outfit  Light";
 
 }
 
-@font-face {
-    font-family: 'Outfit';
-    font-style: normal;
-    font-size: 20px;
-    font-weight: 600;
-    /*src: url("");*/
-}
-
-
-body {
+html, body {
     background: var(--grayscale-01);
+}
+
+h1, h2, h3 {
+    font-family: var(--font-bold);
+}
+
+p {
+    font-family: var(--font-regular);
 }
 
 .header {
@@ -76,10 +83,6 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-
-
-    font-family: Outfit;
-    font-style: normal;
     font-size: 37px;
     font-weight: 600;
     line-height: 17px;
@@ -101,20 +104,12 @@ body {
 
 .banner {
     max-width: 671px;
-    /*box-sizing: border-box;*/
-    /*width: 30%;*/
     display: flex;
     flex-direction: column;
-    /*align-content: space-between;*/
-    /*text-align: left;*/
-    /*justify-content: center;*/
     color: var(--grayscale-07, #FFF);
     margin-left: 110px;
 
-    /* Subtitle/S6_Regular_20 */
-    font-family: Outfit;
     font-size: 20px;
-    font-style: normal;
     font-weight: 400;
 
 }
@@ -123,24 +118,20 @@ body {
     font-size: 96px;
     line-height: 106%;
     margin-bottom: 20px;
-    font-family: Outfit;
-    font-style: normal;
     font-weight: 700;
 
 }
 
 .banner__text {
     margin-bottom: 40px;
+    max-width: 535px;
 }
 
 .banner__pictures {
     position: absolute;
-    /*width: 60%;*/
-    /*height: 100%;*/
     width: 595px;
     height: 529px;
     flex-shrink: 0;
-    /*top: 0;*/
     right: 0;
 }
 
@@ -169,7 +160,7 @@ body {
 }
 
 .card {
-display: flex;
+    display: flex;
     flex-direction: column;
     color: var(--grayscale-07);
     max-width: 336px;
@@ -200,7 +191,6 @@ display: flex;
 
 
 #Blocks
-
 .blocks-section {
 
 }
@@ -211,7 +201,7 @@ display: flex;
     display: flex;
     flex-direction: row;
     justify-content: center;
-column-gap: 100px;
+    column-gap: 100px;
     align-items: center;
     padding: 40px 0;
     margin-bottom: 100px;
@@ -223,11 +213,35 @@ column-gap: 100px;
     font-style: normal;
     font-weight: 700;
     line-height: 106%;
-margin-bottom: 16px;
+    margin-bottom: 16px;
     max-width: 160px;
 }
 
 .blocks__text {
+    max-width: 215px;
+
+    font-family: Outfit;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 120%;
+}
+
+
+#Solutions
+.solutions-section {
+color: var(--grayscale-07);
+}
+
+.solutions__header {
+
+
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 120%;
+}
+
+.solutions__text {
     font-family: Outfit;
     font-size: 24px;
     font-style: normal;
