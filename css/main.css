@@ -329,6 +329,13 @@ p {
     /*transform: translate3d(30vw, 0, 0);*/
 }
 
+.text__item_transparent {
+    -webkit-text-fill-color: midnightblue; /* Скрываем заливку текста */
+    -webkit-text-stroke: 3px solid var(--grayscale-07);
+
+}
+
+
 #Blocks .blocks-section {
 }
 
