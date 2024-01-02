@@ -16,10 +16,23 @@
   font-family: var(--font-semibold);
   font-size: 20px;
   font-weight: 600;
+
+  /*transition: background-color .2s ease,border-color .2s ease,color .2s ease,fill .2s ease,transform .2s ease-in-out;*/
 }
 
 .button:hover {
   background-color: var(--grayscale-01);
+  border: 2px solid var(--primary-01);
+  transform: scale(110%) ;
+  transition: background-color .2s ease,border-color .5s ease,color .2s ease,fill .2s ease,transform .2s ease-in-out;
+}
+
+.button::after{
+  transform: translate(-100%) rotate(10deg);
+  transform-origin: top left;
+  will-change: transform;
+  background-color: var(--grayscale-06);
+  transition: background-color .2s ease,border-color .2s ease,color .2s ease,fill .2s ease,transform .2s ease-in-out;
 }
 
 button:disabled {
