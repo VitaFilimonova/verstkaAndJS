@@ -17,22 +17,63 @@
   font-size: 20px;
   font-weight: 600;
 
+  overflow: hidden;
+  /*will-change: transform;*/
   /*transition: background-color .2s ease,border-color .2s ease,color .2s ease,fill .2s ease,transform .2s ease-in-out;*/
+  transition: background-color .2s ease,border-color .2s ease,color .2s ease,fill .2s ease,transform .2s ease-in-out;
 }
 
 .button:hover {
+  /*background-color: var(--grayscale-01);*/
+  /*border: 2px solid var(--primary-01);*/
+  /*transform: scale(110%) ;*/
+  /*transition: background-color .2s ease,border-color .5s ease,color .2s ease,fill .2s ease,transform .2s ease-in-out;*/
+
   background-color: var(--grayscale-01);
-  border: 2px solid var(--primary-01);
-  transform: scale(110%) ;
-  transition: background-color .2s ease,border-color .5s ease,color .2s ease,fill .2s ease,transform .2s ease-in-out;
+  border: 2px solid var(--primary-01, #954CED);
+  transition: background-color .2s ease,border-color .2s ease,color .2s ease,fill .2s ease,transform .2s ease-in-out;
+  transform: scale(1.07);
+  will-change: transform
+
 }
 
-.button::after{
+.button:hover:after {
+    transform: translate(0);
+    z-index: 0
+}
+
+/*.button::after{*/
+  /*transform: translate(-100%) rotate(10deg);*/
+  /*transform-origin: top left;*/
+  /*will-change: transform;*/
+  /*background-color: var(--grayscale-06);*/
+  /*transition: background-color .2s ease,border-color .2s ease,color .2s ease,fill .2s ease,transform .2s ease-in-out;*/
+
+/*}*/
+
+.button:after {
+  content: "";
+  display: block;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
   transform: translate(-100%) rotate(10deg);
   transform-origin: top left;
-  will-change: transform;
-  background-color: var(--grayscale-06);
   transition: background-color .2s ease,border-color .2s ease,color .2s ease,fill .2s ease,transform .2s ease-in-out;
+  will-change: transform;
+  z-index: -1;
+  border-radius: 80em;
+  background-color: var(--grayscale-01);
+}
+
+.button:hover,.button:hover .button__inner {
+  color: #11190c
+}
+
+.button:hover:after,.button:hover:before {
+  transition: background-color .2s ease,border-color .2s ease,color .2s ease,fill .2s ease,transform .2s ease-in-out
 }
 
 button:disabled {

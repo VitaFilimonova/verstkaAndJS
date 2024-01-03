@@ -18,7 +18,7 @@
     --secondary-01: #2fdbbc;
     --secondary-02: #ffaa4c;
     --additional-01: #ff6c2d;
-    --additional-02 : #EC1211;
+    --additional-02: #EC1211;
 
     --font-bold: "Outfit Bold";
     --font-semibold: "Outfit SemiBold";
@@ -63,7 +63,7 @@ p {
     z-index: 0;
 }
 
-.header {
+.nav {
     display: flex;
     flex-direction: column;
     font-family: var(--font-medium);
@@ -73,14 +73,14 @@ p {
 .header__menu {
 }
 
-.tabs__inner {
+.nav__tabs {
     display: flex;
     background: var(--secondary-02);
     padding: 0 60px;
     height: 38px;
 }
 
-.tabs__item {
+.nav__tab-item {
     display: flex;
     padding: 9px 40px;
     /*justify-content: center;*/
@@ -88,13 +88,13 @@ p {
     /*gap: 10px;*/
 }
 
-.tabs__item-active {
+.nav__tab-item--active {
     background-color: var(--grayscale-01);
     color: var(--grayscale-07);
     border-radius: 20px 20px 0 0;
 }
 
-.nav {
+.header {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -104,11 +104,18 @@ p {
     background-color: var(--grayscale-01);
     width: 100%;
     height: 100%;
+    z-index: 20;
+
+    font-family: var(--font-semibold);
+    font-size: 37px;
+    font-weight: 600;
+    text-transform: lowercase;
     /*position: fixed;*/
     /*width: 100%;*/
 }
 
 .logo {
+
     color: var(--grayscale-07);
     display: flex;
     justify-content: center;
@@ -139,7 +146,7 @@ p {
     align-items: center;
     border-radius: 16px;
     position: fixed;
-    z-index: 99;
+    z-index: 9;
     margin: 0 auto;
     top: 85%;
     left: 50%;
@@ -148,7 +155,7 @@ p {
     animation: cookies 1s forwards;
 }
 
-@keyframes cookies  {
+@keyframes cookies {
     0% {
         transform: translateY(100%) translateX(-50%);
         /*opacity: 0;*/
@@ -159,25 +166,25 @@ p {
     }
 }
 
-.cookies-container {
+.cookies__container {
     display: flex;
     gap: 140px;
 }
 
-.cookies-text {
+.cookies__text {
     max-width: 780px;
 }
 
-.cookies-buttons {
+.cookies__buttons {
     display: flex;
     gap: 20px;
 }
 
-.cookies__close-button {
-    position: absolute;
-    top: 16px;
-    right: 18px;
-}
+/*.cookies__close-button {*/
+/*    position: absolute;*/
+/*    top: 16px;*/
+/*    right: 18px;*/
+/*}*/
 
 
 #Banner .banner-section {
@@ -272,7 +279,7 @@ p {
 }
 
 .about__subtitle_elem {
-    z-index: 90;
+    z-index: 9;
     position: relative;
 }
 
@@ -350,7 +357,7 @@ p {
     background: transparent;
     outline: none;
     position: relative;
-    z-index: 80;
+    z-index: 8;
 }
 
 .phone__video {
@@ -395,7 +402,7 @@ p {
 
 .text__item {
     display: flex;
-    gap:20px;
+    gap: 20px;
     position: relative;
     overflow: hidden;
     flex-shrink: 0;
@@ -423,7 +430,7 @@ p {
     text-shadow: none;
     color: transparent;
     -webkit-text-stroke-width: 2px;
-    -webkit-text-stroke-color: var(--grayscale-02) ;
+    -webkit-text-stroke-color: var(--grayscale-02);
 }
 
 .text__item_transparent {
@@ -805,13 +812,9 @@ p {
 }
 
 
-
-
-
-
 .contacts-tab {
     margin: 0 auto;
-   left: 50%;
+    left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
     background-color: var(--grayscale-07);
@@ -822,13 +825,14 @@ p {
     /*height: 700px;*/
     position: fixed;
     border-radius: 20px;
-display: none;
+    display: none;
+    z-index: 99;
 }
 
 .input {
     display: flex;
     flex-direction: column;
-    gap:10px;
+    gap: 10px;
 }
 
 .input__title {
@@ -852,11 +856,15 @@ display: none;
     font-size: 14px;
     font-weight: 400;
     line-height: 22px;
+
+    display: flex;
+
+
 }
 
 .error {
     color: var(--additional-02, #EC1211);
-
+display: none;
 
     font-family: var(--font-regular);
     font-size: 12px;
@@ -870,14 +878,14 @@ display: none;
     flex-direction: column;
     gap: 20px;
     color: var(--additional-02, #EC1211);
-margin-top: 20px;
+    margin-top: 20px;
     font-family: var(--font-regular);
     font-size: 16px;
     font-weight: 400;
     line-height: normal;
 }
 
-.contacts-tab__close-button {
+.close-button {
     position: absolute;
     right: 16px;
     top: 16px;
@@ -890,41 +898,35 @@ margin-top: 20px;
     transition: 200ms ease-in-out;
     top: 0;
     left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, .2);
-    /*pointer-events: none;*/
-z-index: -1;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, .8);
+    pointer-events: none;
+    z-index: 9;
 
-    /*-webkit-box-shadow:  0px 0px 0px 9999px rgba(0, 0, 0, 0.5);*/
-    /*box-shadow:  0px 0px 0px 9999px rgba(0, 0, 0, 0.5);*/
 }
 
+.overlay-active {
+    pointer-events: all;
+    opacity: 1;
+}
 
+.required::after {
+    content: ' *';
+    color: var(--additional-02);
+    font-size: 15px;
+}
 
-/*#overlay:after {*/
-/*    position: fixed;*/
-/*    content: "";*/
-/*    top: 0;*/
-/*    left: 0;*/
-/*    bottom: 0;*/
-/*    right: 0;*/
-/*    background: rgba(0,0,0,0.5);*/
-/*    z-index: -2;*/
-/*}*/
+.phone-number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-left: 48px;
+    padding-right: 10px;
+    background: url("./../images/flag-phone-number.svg") no-repeat 16px 13px;
+}
 
-/*#overlay:before {*/
-/*    position: absolute;*/
-/*    content: "";*/
-/*    top: 0;*/
-/*    left: 0;*/
-/*    bottom: 0;*/
-/*    right: 0;*/
-/*    background: #FFF;*/
-/*    z-index: -1;*/
-/*}*/
-
-.cookies.non-active {
+.close {
     display: none;
 }
 
@@ -948,5 +950,61 @@ p a {
 }
 
 .open {
+    display: flex !important;
+}
+
+
+.thanks-tab {
+    background-color: var(--grayscale-07);
+
+    width: 417px;
+    padding: 40px;
+    display: none;
+
+
+    border-radius: 20px;
+    margin: 0 auto;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    position: fixed;
+
+    z-index: 999;
+
+}
+
+.thanks-tab__container {
+    justify-content: center;
+    align-items: center;
     display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.thanks-tab__title {
+    color: var(--primary-02, #A64CED);
+    text-align: center;
+
+    font-family: var(--font-semibold);
+    font-size: 36px;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.thanks-tab__subtitle {
+    color: var(--grayscale-02, #444);
+    text-align: center;
+
+
+    font-family: var(--font-regular);
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 120%;
+}
+
+.button {
+}
+
+.super-button {
+    width: 100%;
 }

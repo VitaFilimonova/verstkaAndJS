@@ -7,44 +7,41 @@
     <link rel="stylesheet" href="./css/main.css"/>
 </head>
 <body >
-<header class="header">
-    <div class="tabs">
-        <ul class="tabs__inner">
-            <li class="tabs__item tabs__item-active">For Business</li>
-            <li class="tabs__item">For Customers</li>
-        </ul>
-    </div>
-</header>
 <nav class="nav">
+        <ul class="nav__tabs">
+            <li class="nav__tab-item nav__tab-item--active">For Business</li>
+            <li class="nav__tab-item">For Customers</li>
+        </ul>
+</nav>
+
+<header class="header">
     <a class="logo">
         <img src="images/logo.svg" alt="budds"/>
         budds
     </a>
 
-    <button class="button" >Contact sales</button>
-</nav>
+    <button class="button button-sales">Contact sales</button>
+</header>
 
 <div class="cookies" id="cookies">
-    <div class="cookies-container">
-        <p class="cookies-text">
+    <div class="cookies__container">
+        <p class="cookies__text">
             This website uses cookies to ensure
             you get the best experience on our website.
             They also allow us to analyze user behavior in order
             to constantly improve the website for you.
         </p>
-        <div class="cookies-buttons">
-            <button class="buttons-cookie button" id="accept-cookies">Accept</button>
-            <button class="buttons-cookie button" id="decline-cookies">Decline</button>
+        <div class="cookies__buttons">
+            <button class="button cookies__buttons" id="accept-cookies">Accept</button>
+            <button class="button cookies__buttons" id="decline-cookies">Decline</button>
         </div>
     </div>
-    <button class="cookies__close-button">
-        <img src="images/close-button.svg">
+    <button class="close-button">
+        <img src="images/close-button.svg" alt="close">
     </button>
-
-
 </div>
 
-<section class="banner-section">
+<section class="banner">
     <div class="container">
         <div class="banner">
             <div class="banner-description">
@@ -415,24 +412,24 @@
 </footer>
 
 <section >
-    <div class="contacts-tab" id="overlay">
+    <div class="contacts-tab" >
         <form class="contacts-form">
             <div class="input">
-                <h6 class="input__title">Name</h6>
-                <input class="contacts__input" placeholder="Enter name ">
+                <h6 class="input__title required">Name</h6>
+                <input class="contacts__input required-value" placeholder="Enter name" required type="text">
                 <span class="error ">This field is required.</span>
             </div>
 
             <div class="input">
-                <h6 class="input__title">Email</h6>
-                <input class="contacts__input" placeholder="Enter name ">
+                <h6 class="input__title required">Email</h6>
+                <input class="contacts__input required-value" placeholder="Enter email" required type="text">
                 <span class="error ">This field is required.</span>
             </div>
 
             <div class="input">
-                <h6 class="input__title">Phone number</h6>
-                <input class="contacts__input" placeholder="Enter name ">
-                <span class="error ">This field is required.</span>
+                <h6 class="input__title required">Phone number</h6>
+                <input class="contacts__input required-value phone-number" placeholder="+7 000 000 00 00" required >
+                <span class="error">This field is required.</span>
             </div>
 
             <div class="input">
@@ -453,15 +450,33 @@
                     By submitting this form you are agreeing to Budss’s <a>Privacy Policy</a> and <a>Terms of Use</a>
                 </p>
 
-                <button class="button">Contact sales</button>
+                <button class="button submit">Contact sales</button>
             </div>
-            <button class="contacts-tab__close-button">
-                <img src="images/close-button.svg">
-            </button>
+
 
         </form>
+        <button class="close-button">
+        <img src="images/close-button.svg">
+    </button>
     </div>
 </section>
+
+<div class="thanks-tab">
+    <div class="thanks-tab__container">
+        <img src="images/purple-man-thanks.svg">
+        <h3 class="thanks-tab__title">Thank you!</h3>
+        <p class="thanks-tab__subtitle">Thank you, we have received
+            your application and will contact you soon!</p>
+        <button class="button super-button">Super</button>
+    </div>
+
+
+    <button class="close-button">
+        <img src="images/close-button.svg">
+    </button>
+</div>
+<div class="overlay"></div>
+
 <script src="js/main.js"></script>
 </body>
 </html>
