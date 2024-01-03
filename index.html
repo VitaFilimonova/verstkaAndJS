@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8"/>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <title>For business</title>
 
     <link rel="stylesheet" href="./css/main.css"/>
@@ -15,11 +17,12 @@
 </nav>
 
 <header class="header">
-    <a class="logo" >
+    <a class="logo">
         <img src="images/logo.svg" alt="budds"/>
         budds
     </a>
-    <button class="button button-sales">Contact sales</button>
+    <button class="button button-sales" id="header-button">Contact sales</button>
+<button class="burger-button"></button>
 </header>
 
 <div class="cookies" id="cookies">
@@ -367,12 +370,12 @@
                 <div class="footer__buttons">
                     <button class="button button-sales">Contact sales</button>
                     <div>
-                        <a class="app-store"  href="#">
+                        <a class="app-store" href="#">
                             <img src="images/appstore.svg" alt="appstore"/>
                         </a>
                     </div>
                     <div>
-                        <a class="google-play"  href="#">
+                        <a class="google-play" href="#">
                             <img src="images/googleplay.svg" alt="googleplay"/>
                         </a>
                     </div>
@@ -384,13 +387,13 @@
             © Copyright 2023, All Rights Reserved by Buds
 
             <div class="footer__links">
-                <a class="footer__links-item"  href="#">
+                <a class="footer__links-item" href="#">
                     Privacy Policy
                 </a>
-                <a class="footer__links-item"  href="#">
+                <a class="footer__links-item" href="#">
                     Terms Of Use - Seller
                 </a>
-                <a class="footer__links-item"  href="#">
+                <a class="footer__links-item" href="#">
                     Terms of Use - Sellers & Customers
                 </a>
             </div>
@@ -434,7 +437,8 @@
                     Please fill in all required fields
                </span>
                 <p class="contacts__description">
-                    By submitting this form you are agreeing to Budss’s <a  href="#">Privacy Policy</a> and <a  href="#">Terms of Use</a>
+                    By submitting this form you are agreeing to Budss’s <a href="#">Privacy Policy</a> and <a href="#">Terms
+                    of Use</a>
                 </p>
 
                 <button class="button submit">Contact sales</button>
@@ -462,6 +466,22 @@
     </button>
 </div>
 <div class="overlay"></div>
+
+<section class="mobile-menu">
+    <div class="mobile-menu__container">
+        <button class="close-burger-menu"></button>
+        <button class="button button-sales">Contact sales</button>
+        <div>
+            <ul class="mobile-menu__tabs">
+                <li>For Business</li>
+                <li>For Customers</li>
+                <li>Privacy Policy</li>
+                <li>Terms Of Use - Seller</li>
+                <li>Terms of Use - Sellers & Customers</li>
+            </ul>
+        </div>
+    </div>
+</section>
 
 <script src="js/main.js"></script>
 </body>
