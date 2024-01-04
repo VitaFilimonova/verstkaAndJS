@@ -1,0 +1,283 @@
+/*@import "reset.css";*/
+
+/*:root {*/
+/*    --btn-size: 100px;*/
+/*    --btn-arrowsize: --btn-size / 4;*/
+
+
+/*    --btn-color: hotpink;*/
+/*    --btn-bg: #111;*/
+/*    --btn-border: hotpink;*/
+
+/*--btn-hover-color: #111;*/
+/*    --btn-bg-hover: white;*/
+/*    --btn-hover-border-color: white;*/
+
+/*    --global-white: #FFFFFF;*/
+/*}*/
+
+
+/*body {*/
+/*    background: #a1c4fd;*/
+/*}*/
+
+/*.button-arrow {*/
+/*    position: absolute;*/
+/*    width: 50px;*/
+/*    height: 50px;*/
+/*    background: var(--global-white);*/
+/*    border: 2px solid var(--btn-border);*/
+/*    border-radius: var(--btn-size);*/
+/*    color: var(--btn-color);*/
+/*    cursor: pointer;*/
+/*    left: 50%;*/
+/*    !*line-height: var(--btn-size);*!*/
+/*    !*margin-left: -calc(var(--btn-size )/ 2);*!*/
+/*    transition: all 0.25s ease-in-out;*/
+/*    overflow: hidden;*/
+/*    &:hover {*/
+/*        background:var(--btn-bg-hover);*/
+/*        border-color: var(--btn-hover-border-color);*/
+/*        color: var(--btn-hover-color);*/
+/*    }*/
+/*    &:after {*/
+/*        position: absolute;*/
+/*        display: inline-block;*/
+/*        !*content: "";*!*/
+/*        !*width: var(--btn-arrowsize);*!*/
+/*        !*height: var(--btn-arrowsize);*!*/
+/*        top: 50%;*/
+/*        left: 50%;*/
+/*    }*/
+/*}*/
+
+/*.button-arrow--left {*/
+/*    left: 20px;*/
+/*    &:after {*/
+/*        !*margin-left: -(var(--btn-arrowsize) * .5);*!*/
+/*        !*margin-top: -(var(--btn-arrowsize) * .25);*!*/
+/*        border-top: 2px solid;*/
+/*        border-left: 2px solid;*/
+/*        !*transform: rotateZ(45deg);*!*/
+/*    }*/
+/*}*/
+
+/*.button-arrow--right {*/
+/*    right: 20px;*/
+/*    &:after {*/
+/*        !*margin-left: -(var(--btn-arrowsize) * .5);*!*/
+/*        !*margin-top: -(var(--btn-arrowsize) * .75);*!*/
+/*        border-bottom: 2px solid;*/
+/*        border-right: 2px solid;*/
+/*        !*transform: rotateZ(45deg);*!*/
+/*    }*/
+/*}*/
+
+/*.button-arrow__image {*/
+/*    height: 20px;*/
+/*    align-items: center;*/
+/*    position: absolute;*/
+/*    !*opacity: 0;*!*/
+/*    !*top: 0;*!*/
+/*    !*left: 0;*!*/
+/*    !*width: 100%;*!*/
+/*    pointer-events: none;*/
+
+/*}*/
+
+/*.button-arrow--right .button-arrow__image {*/
+/*    rotate: 180deg;*/
+/*}*/
+
+
+/*.container {*/
+
+/*    !*height: 100%;*!*/
+/*    !*position: relative;*!*/
+/*    !*width: 100vw;*!*/
+/*    !*max-width: 1200px;*!*/
+
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    justify-content: center;*/
+/*    align-items: center;*/
+/*    height: 100vh; !* Это высота 100% от видимой области экрана *!*/
+
+/*}*/
+
+/*.slides {*/
+/*display: flex;*/
+/*    flex-direction: row;*/
+/*    justify-content: flex-start;*/
+/*    align-items: center;*/
+/*    position: relative;*/
+/*    left: 0;*/
+/*    !*margin-top: 20%;*!*/
+/*!*    align-items: center;*!*/
+/*    !*margin: 0 auto;*!*/
+/*    overflow: hidden;*/
+/*    !*height: 350px;*!*/
+/*    width: 40%;*/
+/*    !*cursor: pointer;*!*/
+/*    gap: 30px;*/
+/*    !*position: relative;*!*/
+/*}*/
+
+/*.slides__image {*/
+/*    width: 800px;*/
+/*    height: 500px;*/
+/*    border-radius: 15px;*/
+/*    object-fit: cover;*/
+/*}*/
+
+/*.slides__image:first-child {*/
+/*    margin-left: 30px;*/
+/*}*/
+
+/*.points {*/
+/*    display: flex;*/
+/*    flex-direction: row;*/
+/*    position: absolute;*/
+/*    left: 50%;*/
+/*    transform: translateX(-50%);*/
+/*    margin-top: 30px;*/
+/*    gap: 20px;*/
+/*}*/
+
+/*.point {*/
+/*    gap: 20px;*/
+/*    width: 15px;*/
+/*    height: 15px;*/
+/*    border: 3px solid #ff6c2d;*/
+/*    border-radius: 50%;*/
+
+/*}*/
+
+/*.active {*/
+/*    background-color: #ff6c2d;*/
+/*}*/
+@import "./reset.css";
+
+:root {
+    --btn-size: 50px; /* Reduced size for arrows */
+    --btn-color: #000; /* Arrow color */
+    --btn-bg: transparent; /* Background of arrows */
+    --btn-border: #000; /* Arrow border color */
+    --btn-hover-color: #fff; /* Hover state color */
+    --btn-bg-hover: #000; /* Hover background color */
+    --btn-hover-border-color: #fff; /* Hover border color */
+}
+
+body {
+    background-color: rgba(161,255,91,0.34);
+}
+.slider {
+    position: relative;
+    width: 100%;
+    height: 100vh; /* Full viewport height */
+    display: flex;
+    align-items: center; /* Center slider vertically */
+    justify-content: center; /* Center slider horizontally */
+
+    /*margin: 0 auto;*/
+
+}
+
+.slider__slides-container {
+    overflow: hidden; /* Hide the overflowing images */
+    position: relative;
+    width: 800px; /* Adjust to your image width */
+    height: 600px; /* Adjust to your image height */
+    justify-items:  center;
+
+    /*width: 100%;*/
+}
+
+.slider__slides {
+    display: flex;
+    flex-direction: row;
+width: max-content;
+    position: absolute;
+    left: 0;
+
+    transition: 1s;
+
+    /*gap: 40px;*/
+    /*width: 100%;*/
+    /*transition: transform 0.25s ease-in-out; !* Smooth transition for slide change *!*/
+}
+
+.slider__slides img {
+
+    width: 800px; /* Adjust to your image width */
+    height: 600px; /* Adjust to your image height */
+    border-radius: 15px;
+    object-fit: cover;
+}
+
+
+
+.container {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.slider__points {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    align-items: center;
+    z-index: 9;
+    bottom: 15%; /* Space below the image */
+    /*left: 0;*/
+}
+
+.point {
+    width: 15px;
+    height: 15px;
+    border: 3px solid #ff6c2d;
+    border-radius: 50%;
+    margin: 20px 10px; /* Space between points */
+}
+.point--active {
+    background-color: #ff6c2d;
+}
+
+.slider__arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: var(--btn-size);
+    height: var(--btn-size);
+    border: 2px solid var(--btn-border);
+    border-radius: 50%;
+    background: var(--btn-bg);
+    color: var(--btn-color);
+    cursor: pointer;
+    transition: all 0.25s ease-in-out;
+}
+
+.slider__arrow:hover {
+    background: var(--btn-bg-hover);
+    border-color: var(--btn-hover-border-color);
+    color: var(--btn-hover-color);
+}
+
+.slider__arrow--left {
+    left: 10px; /* Adjust as per the layout */
+}
+
+.slider__arrow--right {
+    right: 10px; /* Adjust as per the layout */
+}
+
+.slider__arrow img {
+    width: 20px;
+    height: auto;
+}
+
+/* Flip the right arrow */
+.slider__arrow--right .slider__arrow-image {
+    transform: rotate(180deg);
+}
