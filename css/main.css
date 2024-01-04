@@ -126,7 +126,7 @@ p {
 }
 
 .container {
-    padding: 0 60px;
+    padding: 0 clamp(16px, 4vw, 60px);
     margin: 0 auto;
     max-width: 1440px;
 }
@@ -243,7 +243,7 @@ p {
 }
 
 .about__content {
-    margin-top: 100px;
+    margin-top: clamp(30px,7vw,80px);
     color: var(--grayscale-07);
     padding-bottom: 36px;
     display: flex;
@@ -253,11 +253,11 @@ p {
 
 .about__header {
     color: var(--grayscale-07);
-    margin-bottom: 80px;
+    /*margin-bottom: clamp(30px,3vw,80px)*/
 }
 
 .header__title {
-    font-size: 96px;
+    font-size: clamp(40px,9vw,96px);
     font-weight: 700;
     line-height: 106%;
 }
@@ -265,7 +265,7 @@ p {
 .about__subtitle {
     max-width: 408px;
     height: 100%;
-    font-size: 36px;
+    font-size: clamp(24px,6vw,36px);
     font-weight: 600;
     line-height: normal;
 
@@ -312,7 +312,7 @@ p {
 }
 
 .card__text {
-    font-size: 24px;
+    font-size: clamp(16px,3vw,24px);
     font-weight: 400;
     line-height: 120%;
 }
@@ -485,7 +485,7 @@ p {
 }
 
 .solutions-container {
-    padding-top: 100px;
+    padding-top:  clamp(80px, 8%, 100px);
     padding-bottom: 100px;
 }
 
@@ -654,7 +654,7 @@ p {
     border-radius: 60px;
     border: 1px solid var(--grayscale-04);
     display: flex;
-    padding: 60px 0;
+    padding: clamp(40px,10% ,60px) 0;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -665,7 +665,7 @@ p {
 .partners__title {
 
     text-align: center;
-    font-size: 64px;
+    font-size: clamp(40px,7vw,64px);
     font-weight: 700;
     line-height: 106%;
 }
@@ -683,7 +683,7 @@ p {
 }
 
 .partners__description-title {
-    font-size: 96px;
+    font-size: clamp(40px,7vw,96px);
     font-weight: 700;
     line-height: 106%;
     margin-bottom: 20px;
@@ -1026,11 +1026,11 @@ p a {
 }
 
 
-@media (max-width: 767px) {
+@media (max-width: 768px) {
 
-    .container {
-        padding: 0 16px;
-    }
+    /*.container {*/
+    /*    padding: 0 16px;*/
+    /*}*/
 
     .header {
         padding: 16px;
@@ -1052,7 +1052,7 @@ p a {
         min-width: 335px;
         padding: 30px 20px;
         width: 90%;
-        top: 50%;
+        top: 60%;
         left: 50%;
     }
 
@@ -1064,6 +1064,22 @@ p a {
 
     .cookies__buttons {
         flex-direction: column;
+    }
+
+    .about__cards {
+        display: flex;
+        flex-direction: column;
+        column-gap: 60px;
+        padding-top: 40px;
+    }
+
+    .about__content {
+        flex-direction: column;
+
+    }
+
+    .about__img {
+        display: none;
     }
 
     .blocks {
@@ -1088,6 +1104,14 @@ p a {
     .blocks__text {
         font-size: 20px;
         width: 100%;
+    }
+
+    .solutions__cards {
+        display: block;
+    }
+
+    .partners__description {
+        flex-direction: column;
     }
 
     .footer__nav {

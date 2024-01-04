@@ -1,8 +1,8 @@
 const rightButton = document.querySelector(".slider__arrow--right")
 const leftButton = document.querySelector(".slider__arrow--left")
 const buttons = document.querySelectorAll(".slider__arrow")
-const images = document.querySelectorAll(" .slider__slides img")
-const slides = document.querySelector(".slider__slides")
+let images = document.querySelectorAll(" .slider__slides img")
+let slides = document.querySelector(".slider__slides")
 const container = document.querySelector(".slider__slides-container")
 const points = document.querySelectorAll('.point')
 // let imageIndex = 1;
@@ -34,12 +34,12 @@ const points = document.querySelectorAll('.point')
 
 // console.log(images)
 //
-let active = 0;
-let lengthItems = images.length - 1;
+let active = 1;
+let lengthItems = images.length ;
 console.log(lengthItems)
 
 const firstClone = images[0].cloneNode(true);
-const lastClone = images[lengthItems].cloneNode(true);
+const lastClone = images[lengthItems-1].cloneNode(true);
 
 firstClone.id = 'first-clone';
 lastClone.id = 'last-clone';
@@ -47,7 +47,7 @@ lastClone.id = 'last-clone';
 slides.append(firstClone);
 slides.prepend(lastClone);
 
-slides.style.left = '0';
+slides.style.transform = `translateX(${-800*(active)}px`;
 
 rightButton.onclick = function () {
     console.log(active)
@@ -56,7 +56,7 @@ rightButton.onclick = function () {
     } else {
         active = active + 1
     }
-    reloadSlider();
+    // reloadSlider();
 }
 leftButton.onclick = function () {
     console.log(active)
@@ -68,35 +68,59 @@ leftButton.onclick = function () {
     // if (active === 0 ) {
     //     active = lengthItems
     // }
-    reloadSlider();
+    // reloadSlider();
 }
-let refreshSlider = setInterval(() => {
-    rightButton.click()
-}, 5000)
-slides.addEventListener('left', () => {
-    if (slides[active].id === 'first-clone') {
-        active = 1;
-    }
-})
-function reloadSlider() {
-    let checkLeft = images[active].offsetLeft;
-    // console.log(checkLeft)
-    // slides.style.left = -checkLeft + 'px';
-    slides.style.transform = `translate(${-active * 800}px)`
+// let refreshSlider = setInterval(() => {
+//     rightButton.click()
+// }, 5000)
+slides.addEventListener('transitionend', function(event) {
+    console.log(event.propertyName)
+    if (event.propertyName === 'transform') {
+        console.log(active)
+        images = document.querySelectorAll(".slider__slides img")
+        // Обработка завершения анимации свойства transform
+        if (images[active].id === firstClone.id) {
 
-    let lastActiveDot = document.querySelector('.point--active');
-    lastActiveDot.classList.remove('point--active');
-    points[active].classList.add('point--active');
-    clearInterval(refreshSlider)
-    refreshSlider = setInterval(() => {
-        rightButton.click()
-    }, 3000)
+            active = 1;
+            slides.style.transform = `translateX(${-active * 800}px`;
+        }else if (images[active].id === 'last-clone') {
+            slides.style.transition = "none";
+            active = lengthItems;
+            slides.style.transform = `translateX(${-800 * (active)}px`;
+        }
+   };
+});
+
+const startSlide = ()  => {
+
+    setInterval(() => {
+
+        active++;
+        slides.style.transform = `translateX(${-800*(active)}px`;
+    },2000)
+    console.log(active)
 }
+startSlide()
+
+// function reloadSlider() {
+//     let checkLeft = images[active].offsetLeft;
+//     // console.log(checkLeft)
+//     // slides.style.left = -checkLeft + 'px';
+//     slides.style.transform = `translate(${-active * 800}px)`
+//
+//     let lastActiveDot = document.querySelector('.point--active');
+//     lastActiveDot.classList.remove('point--active');
+//     points[active].classList.add('point--active');
+//     clearInterval(refreshSlider)
+//     refreshSlider = setInterval(() => {
+//         rightButton.click()
+//     }, 3000)
+// }
 
 points.forEach((el, index) => {
     el.addEventListener('click', function () {
         active = index;
-        reloadSlider()
+        // reloadSlider()
     })
 })
 

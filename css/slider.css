@@ -200,8 +200,8 @@ width: max-content;
     position: absolute;
     left: 0;
 
-    transition: 1s;
 
+transform: none;
     /*gap: 40px;*/
     /*width: 100%;*/
     /*transition: transform 0.25s ease-in-out; !* Smooth transition for slide change *!*/
