@@ -12,6 +12,11 @@ const requiredFields = document.querySelectorAll(".required-value")
 const superButton = document.querySelector(".super-button")
 const overlay = document.querySelector(".overlay")
 const error = document.querySelectorAll(".error")
+
+const closeBurgerMenu = document.querySelector(".close-burger-menu")
+const burgerButton = document.querySelector(".burger-button")
+
+const mobileMenu =  document.querySelector(".mobile-menu__container")
 buttonSales.forEach((button) => {
     button.addEventListener("click", () => {
     // const modal = document.querySelector(button.dataset.modalTarget);
@@ -39,6 +44,15 @@ cookiesButtonAccept.addEventListener("click", closeCookies);
 
 
 buttonSubmitForm.addEventListener("click", openThanksTab)
+
+burgerButton.addEventListener("click", function () {
+    mobileMenu.classList.add('open')
+    document.body.style.overflow = 'hidden';
+})
+closeBurgerMenu.addEventListener("click", function () {
+    mobileMenu.classList.remove('open')
+    document.body.style.overflow = 'auto';
+})
 
 superButton.addEventListener("click", function () {
     thanksForm.classList.remove("open");

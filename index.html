@@ -22,7 +22,10 @@
         budds
     </a>
     <button class="button button-sales" id="header-button">Contact sales</button>
-<button class="burger-button"></button>
+<button class="burger-button">
+    <img class="burger-button__img " src="images/burger-menu.svg" alt="mobile-menu">
+<!
+</button>
 </header>
 
 <div class="cookies" id="cookies">
@@ -34,8 +37,8 @@
             to constantly improve the website for you.
         </p>
         <div class="cookies__buttons">
-            <button class="button cookies__buttons" id="accept-cookies">Accept</button>
-            <button class="button cookies__buttons" id="decline-cookies">Decline</button>
+            <button class="button cookies__button" id="accept-cookies">Accept</button>
+            <button class="button cookies__button" id="decline-cookies">Decline</button>
         </div>
     </div>
     <button class="close-button">
@@ -148,10 +151,10 @@
         <div class="animated-section__phone">
             <img class="animated-section__phone-img" src="images/phone.svg" alt="phone"/>
             <video
-                    class="phone__video"
+                    class="animated-section__phone-video"
                     autoplay
                     loop
-                    width="308px"
+                    width="280px"
                     height="610px"
             >
                 <source
@@ -163,18 +166,25 @@
 
 
         <div class="animated-section__text">
-            <div class="text__item right-scroll">
-                <span class="text__item-words ">How Budds Works</span>
-                <span class="text__item-words ">How Budds Works</span>
+            <div class="text__item-container  how-works__first-line">
+                <div class="text__item left-scroll">
+                    <span class="text__item-words ">How Budds Works</span>
+                    <span class="text__item-words ">How Budds Works</span>
+                </div>
+                <div class="text__item left-scroll">
+                    <span class="text__item-words ">How Budds Works</span>
+                    <span class="text__item-words ">How Budds Works</span>
+                </div>
             </div>
-            <div class="text__item">
-                <span class="text__item-words">How Budds Works</span>
-                <span class="text__item-words">How Budds Works</span>
-            </div>
-            <div class="text__item">
-                <span class="text__item-words">How Budds Works</span>
-                <span class="text__item-words">How Budds Works</span>
-            </div>
+
+<!--            <div class="text__item left-scroll" >-->
+<!--                <span class="text__item-words">How Budds Works</span>-->
+<!--                <span class="text__item-words">How Budds Works</span>-->
+<!--            </div>-->
+<!--            <div class="text__item">-->
+<!--                <span class="text__item-words">How Budds Works</span>-->
+<!--                <span class="text__item-words">How Budds Works</span>-->
+<!--            </div>-->
         </div>
 
 
@@ -214,10 +224,7 @@
         <div class="solutions__cards">
 
             <div class="solutions__card">
-                <img
-                        src="images/why-cards/phone.svg"
-                        alt="phone"
-                />
+
                 <div class="solutions__content">
                     <h2 class="solutions__card-title">
                         Turn your customers into loyal influencers
@@ -227,6 +234,11 @@
                         customers for acquisition and retention.
                     </p>
                 </div>
+                <img
+                        class="solutions__img solutions__img--phone"
+                        src="images/why-cards/phone.svg"
+                        alt="phone"
+                />
             </div>
 
             <div class="solutions__card solutions__card--bulk">
@@ -288,11 +300,14 @@
                         rewards for after purchase.
                     </p>
                 </div>
-                <img
-                        class="solutions__img solutions__img--ai"
-                        src="images/why-cards/purple-man.svg"
-                        alt="purple-man"
-                />
+                <div class="solutions__container--img">
+                    <img
+                            class="solutions__img solutions__img--ai"
+                            src="images/why-cards/purple-man.svg"
+                            alt="purple-man"
+                    />
+                </div>
+
             </div>
 
         </div>
@@ -322,21 +337,21 @@
                 <div class="partners__social-apps">
 
                     <a class="partners__social-link" href="#">
-                        <img src="images/social-apps/facebook.svg" alt="facebook-logo">
+                        <img class="social-link__img" src="images/social-apps/facebook.svg" alt="facebook-logo">
                     </a>
 
                     <a class="partners__social-link" href="#">
-                        <img src="images/social-apps/twitter.svg" alt="twitter-logo">
-                    </a>
-
-
-                    <a class="partners__social-link" href="#">
-                        <img src="images/social-apps/instagram.svg" alt="instagram-logo">
+                        <img class="social-link__img" src="images/social-apps/twitter.svg" alt="twitter-logo">
                     </a>
 
 
                     <a class="partners__social-link" href="#">
-                        <img src="images/social-apps/tik-tok.svg" alt="tik-tok-logo">
+                        <img class="social-link__img" src="images/social-apps/instagram.svg" alt="instagram-logo">
+                    </a>
+
+
+                    <a class="partners__social-link" href="#">
+                        <img class="social-link__img" src="images/social-apps/tik-tok.svg" alt="tik-tok-logo">
                     </a>
 
                 </div>
@@ -364,11 +379,14 @@
                     </a>
                 </div>
                 <ul class="footer__list">
-                    <li>For Business</li>
-                    <li>For Customers</li>
+                    <li class="footer__list-item">For Business</li>
+                    <li class="footer__list-item">For Customers</li>
+                    <li class="footer__list-item footer__list-item--mobile">Privacy Policy</li>
+                    <li class="footer__list-item footer__list-item--mobile">Terms Of Use - Seller</li>
+                    <li class="footer__list-item footer__list-item--mobile">Terms of Use - Sellers & Customers</li>
                 </ul>
                 <div class="footer__buttons">
-                    <button class="button button-sales">Contact sales</button>
+                    <button class="button button-sales button-footer">Contact sales</button>
                     <div>
                         <a class="app-store" href="#">
                             <img src="images/appstore.svg" alt="appstore"/>
@@ -406,30 +424,40 @@
         <form class="contacts-form">
             <div class="input">
                 <h6 class="input__title required">Name</h6>
-                <input class="contacts__input required-value" placeholder="Enter name" required type="text">
+                <label>
+                    <input class="contacts__input required-value" placeholder="Enter name" required type="text">
+                </label>
                 <span class="error ">This field is required.</span>
             </div>
 
             <div class="input">
                 <h6 class="input__title required">Email</h6>
-                <input class="contacts__input required-value" placeholder="Enter email" required type="text">
+                <label>
+                    <input class="contacts__input required-value" placeholder="Enter email" required type="text">
+                </label>
                 <span class="error ">This field is required.</span>
             </div>
 
             <div class="input">
                 <h6 class="input__title required">Phone number</h6>
-                <input class="contacts__input required-value phone-number" placeholder="+7 000 000 00 00" required>
+                <label>
+                    <input class="contacts__input required-value phone-number" placeholder="+7 000 000 00 00" required>
+                </label>
                 <span class="error">This field is required.</span>
             </div>
 
             <div class="input">
                 <h6 class="input__title">Company</h6>
-                <input class="contacts__input" placeholder="Enter company">
+                <label>
+                    <input class="contacts__input" placeholder="Enter company">
+                </label>
             </div>
 
             <div class="input">
                 <h6 class="input__title">Website/Store URL</h6>
-                <input class="contacts__input" placeholder="Enter Website/Store URL">
+                <label>
+                    <input class="contacts__input" placeholder="Enter Website/Store URL">
+                </label>
             </div>
 
             <div class="global-error">
@@ -469,15 +497,17 @@
 
 <section class="mobile-menu">
     <div class="mobile-menu__container">
-        <button class="close-burger-menu"></button>
+        <button class="close-burger-menu">
+            <img class="close-burger-menu__img" src="images/close-burger-menu.svg" alt="close-mobile-menu">
+        </button>
         <button class="button button-sales">Contact sales</button>
-        <div>
+        <div class="mobile-menu__tabs-all">
             <ul class="mobile-menu__tabs">
-                <li>For Business</li>
-                <li>For Customers</li>
-                <li>Privacy Policy</li>
-                <li>Terms Of Use - Seller</li>
-                <li>Terms of Use - Sellers & Customers</li>
+                <li class="mobile-menu__tab">For Business</li>
+                <li class="mobile-menu__tab">For Customers</li>
+                <li class="mobile-menu__tab">Privacy Policy</li>
+                <li class="mobile-menu__tab">Terms Of Use - Seller</li>
+                <li class="mobile-menu__tab">Terms of Use - Sellers & Customers</li>
             </ul>
         </div>
     </div>
