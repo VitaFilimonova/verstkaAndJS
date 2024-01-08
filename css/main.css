@@ -93,7 +93,7 @@ mark {
     top: 22%;
     left: -5%;
     width: 110%; /* Match the width of the mark element */
-    height: clamp(25px,70%,35px); /* Height of the background */
+    height: clamp(25px, 70%, 35px); /* Height of the background */
     background: var(--primary-02);
     border-radius: 30px; /* Apply border-radius to the background */
     transform: rotate(-1.7deg);
@@ -450,7 +450,7 @@ mark {
 .animated-section__phone-video,
 .animated-section__phone-img {
 
-    height: clamp(461px, 45vw, 623px) ;
+    height: clamp(461px, 45vw, 623px);
 }
 
 .animated-section__text {
@@ -464,9 +464,9 @@ mark {
     font-size: clamp(48px, 10vw, 128px);
     font-weight: 700;
     line-height: 106%;
-    top:50%;
-    left:50%;
-    transform:translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .text__item {
@@ -640,12 +640,6 @@ mark {
     z-index: 10;
 }
 
-/*.solutions__header > .marker {*/
-/*    bottom: 82px;*/
-/*    left: 140px;*/
-/*    width: 386px;*/
-/*}*/
-
 .solutions__cards {
     display: grid;
     grid-template-columns: 1.35fr 1fr;
@@ -674,17 +668,26 @@ mark {
 
 .solutions__img--purple-bag {
     right: 0;
-    top: 50px;
-    height: clamp(116px,12vw,167px);
+    /*top: 50px;*/
+    bottom: clamp(30px, 10vw, 185px);
+    height: clamp(116px, 12vw, 167px);
+}
+
+.solutions__content--phone {
+    position: absolute;
+    right: 6%;
+
+    max-width: 365px !important;
 }
 
 .solutions__content--bulk {
-    padding-left: clamp(20px, 4vw, 40px);;
-    max-width: 510px !important;
+    padding-left: clamp(20px, 4vw, 40px);
+    max-width: 510px;
 }
 
 .solutions__card-title--bulk {
-    max-width: 550px;
+    /*max-width: 470px;*/
+    max-width: 95%;
 }
 
 .solutions__card-text--bulk {
@@ -703,8 +706,9 @@ mark {
     flex-direction: column;
     gap: clamp(16px, 6vw, 20px);
     margin-top: clamp(20px, 5vw, 40px);
-    max-width: 400px;
+    max-width: 95%;
     color: var(--grayscale-01);
+    z-index: 1;
 }
 
 .solutions__card-title {
@@ -746,7 +750,7 @@ mark {
 
 .solutions__content--cashback {
     padding-left: clamp(20px, 4vw, 40px);
-    max-width: 440px;
+    /*max-width: 440px;*/
 }
 
 .solutions__card-text--cashback {
@@ -763,7 +767,7 @@ mark {
 }
 
 .solutions__img--ai {
-    position: absolute;
+    /*position: absolute;*/
     bottom: 0;
     /*right: 50px;*/
     height: clamp(185px, 30vw, 300px);
@@ -776,7 +780,7 @@ mark {
 }
 
 .partners__content {
-    padding: clamp(40px,10% ,100px) 0 clamp(90px, 20%,100px) 0;
+    padding: clamp(40px, 10%, 100px) 0 clamp(90px, 20%, 100px) 0;
 }
 
 .partners__header {
@@ -1307,9 +1311,7 @@ p a {
 
     .blocks__item {
         display: flex;
-        /*gap: 20px;*/
         align-items: center;
-        /*justify-content: space-between;*/
     }
 
     .blocks__header {
@@ -1332,22 +1334,40 @@ p a {
 
     .solutions__card {
         display: flex;
-        /*height: auto;*/
-        flex-direction: column;
     }
 
     .solutions__content {
-        padding-left: clamp(20px, 4vw, 40px);
+        max-width: 95% !important;
     }
 
-    .solutions__container--img {
-        height: fit-content;
-        display: flex;
-        justify-content: right;
+    .solutions__content--phone {
+        padding-left: clamp(20px, 4vw, 40px);
+   position: initial;
     }
+
+    .solutions__card-text--bulk {
+        max-width: 95%;
+    }
+
+
+    .solutions__card--cashback {
+        max-height: 313px;
+    }
+
+    .solutions__card-text--cashback {
+        max-width: none;
+
+    }
+
 
     .solutions__img--ai {
-        position: inherit;
+        right: 55px;
+        bottom: -15px;
+
+    }
+
+    .solutions__card--ai {
+        height: 395px;
     }
 
 
@@ -1399,6 +1419,8 @@ p a {
         display: block;
     }
 
+
+
     .footer__row {
         flex-direction: column;
         justify-content: flex-start;
@@ -1409,6 +1431,7 @@ p a {
     .partners__shops img {
         width: min(15em, 45%);
     }
+
 
 }
 
@@ -1426,11 +1449,31 @@ p a {
     }
 
     .footer__list {
-        gap: clamp(0px,1%,15px);
+        gap: clamp(0px, 1%, 15px);
     }
 }
 
-@media  (max-width: 1200px) {
+@media (min-width: 769px) and (max-width: 1200px) {
+    .solutions__card {
+        height: 550px;
+    }
+
+    .solutions__img--ai {
+        right: 10px;
+    }
+
+    .solutions__img--phone {
+        height: 450px;
+        left: -20%;
+        transform: rotate(-10deg);
+        bottom: -10%;
+    }
+    .solutions__content--ai {
+        max-width: 95%;
+    }
+}
+
+@media (max-width: 1200px) {
 
     .banner__img-elem {
         position: relative;
@@ -1443,18 +1486,18 @@ p a {
         align-items: center;
     }
 
+.solutions__content--phone {
+    padding-left: clamp(20px, 4vw, 40px);
+}
+
     .partners__shops img {
         row-gap: 15px;
     }
+
     .partners__shops {
-        /*display: grid;*/
-        /*grid-template-columns: repeat(2, 1fr);*/
-        /*row-gap: 40px;*/
-        /*column-gap: 30px;*/
         flex-wrap: wrap;
         justify-content: space-between;
         row-gap: 30px;
-
     }
 
 
