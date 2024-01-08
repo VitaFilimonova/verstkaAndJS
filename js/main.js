@@ -17,6 +17,7 @@ const closeBurgerMenu = document.querySelector(".close-burger-menu")
 const burgerButton = document.querySelector(".burger-button")
 
 const mobileMenu =  document.querySelector(".mobile-menu__container")
+const header = document.querySelector(".header")
 buttonSales.forEach((button) => {
     button.addEventListener("click", () => {
     // const modal = document.querySelector(button.dataset.modalTarget);
@@ -34,6 +35,7 @@ closeButton.forEach(function(button) {
         parent.classList.add("close");
         overlay.classList.remove("overlay-active")
             document.body.style.overflow = 'auto';
+            // header.style.zIndex = "20"
     });
 });
 
@@ -57,7 +59,9 @@ closeBurgerMenu.addEventListener("click", function () {
 superButton.addEventListener("click", function () {
     thanksForm.classList.remove("open");
     overlay.classList.remove("overlay-active")
+    // header.style.zIndex = "20"
     document.body.style.overflow = 'auto';
+
     // thanksForm.classList.add("close");
 })
 
@@ -81,6 +85,7 @@ function openContactsTab() {
   contactsTab.classList.add("open");
   overlay.classList.add("overlay-active")
     document.body.style.overflow = 'hidden'; // Блокируем скроллинг страницы
+    // header.style.zIndex = "0"
 }
 
 function openThanksTab() {

@@ -50,18 +50,79 @@ p {
     font-family: var(--font-regular);
 }
 
-.marker {
-    width: 353px;
-    height: 34px;
-    transform: rotate(-1.693deg);
-    flex-shrink: 0;
-    border-radius: 30px;
-    background: var(--primary-02);
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    z-index: 0;
+/*mark {*/
+/*    color: var(--grayscale-07);*/
+/*}*/
+
+/*.marker {*/
+/*    width: 353px;*/
+/*    height: 40px;*/
+/*    !*transform: rotate(-30grad);*!*/
+/*    transform: rotate(-2deg); !* Adjust skew angle as needed *!*/
+/*    transform-origin: top left; !* Keeps the left edge aligned *!*/
+/*    writing-mode: sideways-lr;*/
+/*    !*flex-shrink: 0;*!*/
+/*    border-radius: 30px;*/
+/*    background: var(--primary-02);*/
+/*    !*width: 110%;*!*/
+/*    white-space: nowrap;*/
+/*    display: inline-block;*/
+/*    !*position: absolute;*!*/
+/*    !*right: 0;*!*/
+/*    !*bottom: 0;*!*/
+/*    !*z-index: 0;*!*/
+/*    !*display: inline;*!*/
+/*    !*box-decoration-break: clone; !* This ensures the background spans line breaks *!*!*/
+/*    !*-webkit-box-decoration-break: clone;*!*/
+
+/*}*/
+
+mark {
+    color: var(--grayscale-07);
+    background: none;
+    /*border-radius: 30px; !* This will be applied to the text itself *!*/
+    white-space: nowrap;
+    display: inline-block; /* Needed to apply dimensions */
+    position: relative; /* Establish a positioning context for pseudo-element */
 }
+
+.marker::before {
+    content: '';
+    position: absolute;
+    z-index: -1; /* Ensure the background is behind the text */
+    top: 22%;
+    left: -5%;
+    width: 110%; /* Match the width of the mark element */
+    height: clamp(25px,70%,35px); /* Height of the background */
+    background: var(--primary-02);
+    border-radius: 30px; /* Apply border-radius to the background */
+    transform: rotate(-1.7deg);
+    transform-origin: top left;
+    /* Adjust these values as needed to position the background */
+    white-space: nowrap;
+    display: block; /* Needed to apply dimensions */
+}
+
+/* Reset the styles for <mark> to prevent text from rotating */
+.marker {
+    transform: none; /* Remove rotation from text */
+}
+
+/*.marker:after {*/
+/*    content: '';*/
+/*    position: absolute;*/
+/*    z-index: 1; !* Stacks below the text *!*/
+/*    left: 0;*/
+/*    right: 0;*/
+/*    top: 50%; !* Adjust this value as needed *!*/
+/*    bottom: 50%; !* Adjust this value as needed *!*/
+/*    background-color: #7d4cdb; !* purple background *!*/
+/*    transform: skewX(-50deg); !* Adjust skew angle as needed *!*/
+/*    transform-origin: top left; !* Keeps the left edge aligned *!*/
+/*    display: block;*/
+/*    width: 120%; !* Ensures full coverage behind the text *!*/
+/*    !*height: 2em; !* Adjust height to cover text *!*!*/
+/*}*/
 
 .nav {
     display: flex;
@@ -239,6 +300,8 @@ p {
     /*max-width: 1440px;*/
     margin: 0;
     padding: 0;
+    /*right: 0;*/
+
 }
 
 .banner__img-elem {
@@ -353,8 +416,8 @@ p {
 }
 
 .animated-section__content {
-    padding-top: clamp(80px,8vw,100px);
-    padding-bottom: clamp(80px,8vw,100px);
+    padding-top: clamp(80px, 8vw, 100px);
+    padding-bottom: clamp(80px, 8vw, 100px);
     position: relative;
     width: 100%;
     overflow: hidden;
@@ -362,13 +425,15 @@ p {
 }
 
 .animated-section__phone {
-    width: 300px;
+    /*width: 300px;*/
     margin: 0 auto;
     outline: none;
     position: relative;
-    z-index: 8;
+    z-index: 9;
     display: flex;
     justify-content: center;
+    /*width: clamp(228px, 10rem, 308px);*/
+    /*height: clamp(461px, 10rem, 623px);*/
 
 }
 
@@ -379,21 +444,13 @@ p {
 
 .animated-section__phone-img {
     position: absolute;
-    /*z-index: 99;*/
     overflow: hidden;
 }
 
+.animated-section__phone-video,
+.animated-section__phone-img {
 
-.right-scroll {
-    /*white-space: nowrap;*/
-    /*overflow: hidden;*/
-    /*display: inline-block;*/
-
-    animation: scroll-right 5s infinite linear;
-}
-
-.phone__video {
-
+    height: clamp(461px, 45vw, 623px) ;
 }
 
 .animated-section__text {
@@ -403,16 +460,13 @@ p {
     flex-direction: column;
     font-family: var(--font-bold);
     justify-content: center;
-    /*align-content: center;*/
-    /*overflow: hidden;*/
-    top: 100px;
     gap: 68px;
-    /*white-space: nowrap;*/
     font-size: clamp(48px, 10vw, 128px);
     font-weight: 700;
     line-height: 106%;
-
-    /*z-index: -1;*/
+    top:50%;
+    left:50%;
+    transform:translate(-50%, -50%);
 }
 
 .text__item {
@@ -428,6 +482,18 @@ p {
     gap: 20px;
 }
 
+.text__item-container--first-line {
+    color: var(--secondary-01);
+}
+
+.text__item-container--second-line {
+    color: var(--primary-02);
+}
+
+.text__item-container--third-line {
+    color: var(--secondary-02);
+}
+
 /*.text__item-words:nth-child(2n) {*/
 /*    text-shadow: none;*/
 /*    color: var(--secondary-01);*/
@@ -440,8 +506,12 @@ p {
 /*    text-shadow: none;*/
 /*    color: var(--secondary-02);*/
 /*}*/
-.left-scroll {
+.left-moving {
     animation: scroll-left 15s linear infinite;
+}
+
+.right-moving {
+    animation: scroll-right 15s linear infinite;;
 }
 
 @keyframes scroll-left {
@@ -453,23 +523,30 @@ p {
     }
 }
 
+@keyframes scroll-right {
+    0% {
+        transform: translateX(calc(-100% - 20px));
+    }
+    100% {
+        transform: translateX(0);
+
+    }
+}
+
+
 .first-line {
     display: flex;
-    /*gap:20px;*/
+
 }
 
 .text__item-words {
-    /*max-width: 200%;*/
-    color: var(--secondary-02);
-    /*transform: translateY(-100%);*/
-    /*display: flex;*/
+
+    /*color: var(--secondary-02);*/
+
     position: relative;
     text-align: center;
 
-    /*height: 100%;*/
 
-    /*white-space: nowrap;*/
-    /*transform: translate3d(30vw, 0, 0);*/
 }
 
 .text__item-words:nth-child(even) {
@@ -481,21 +558,6 @@ p {
     1px 1px 0 var(--grayscale-02);
 
 
-}
-
-.text__item_transparent {
-    /*-webkit-text-fill-color: midnightblue; !* Скрываем заливку текста *!*/
-    /*-webkit-text-stroke: 3px solid var(--grayscale-07);*/
-
-}
-
-@keyframes scroll-right {
-    from {
-        transform: translateX(0%);
-    }
-    to {
-        transform: translateX(-50%);
-    }
 }
 
 
@@ -578,11 +640,11 @@ p {
     z-index: 10;
 }
 
-.solutions__header > .marker {
-    bottom: 82px;
-    left: 140px;
-    width: 386px;
-}
+/*.solutions__header > .marker {*/
+/*    bottom: 82px;*/
+/*    left: 140px;*/
+/*    width: 386px;*/
+/*}*/
 
 .solutions__cards {
     display: grid;
@@ -613,6 +675,7 @@ p {
 .solutions__img--purple-bag {
     right: 0;
     top: 50px;
+    height: clamp(116px,12vw,167px);
 }
 
 .solutions__content--bulk {
@@ -713,7 +776,7 @@ p {
 }
 
 .partners__content {
-    padding: 100px 0 100px 0;
+    padding: clamp(40px,10% ,100px) 0 clamp(90px, 20%,100px) 0;
 }
 
 .partners__header {
@@ -764,7 +827,7 @@ p {
 
 .partners__social-apps {
     display: flex;
-    gap: clamp(28px, 6vw, 40px);
+    gap: clamp(28px, 4vw, 40px);
 }
 
 .partners__social-link:last-child {
@@ -793,6 +856,7 @@ p {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    gap: min(10px, 5%)
 }
 
 #Footer,
@@ -858,6 +922,7 @@ p {
 .footer__buttons {
     display: flex;
     gap: 20px;
+    align-items: center;
 }
 
 .footer__buttons button {
@@ -968,7 +1033,7 @@ p {
     height: 100%;
     background-color: rgba(0, 0, 0, .8);
     pointer-events: none;
-    z-index: 9;
+    z-index: 99;
 
 }
 
@@ -1229,6 +1294,10 @@ p a {
         width: 70vw;
     }
 
+    .animated-section__text {
+        gap: 93px;
+    }
+
     .blocks {
         flex-direction: column;
         gap: 40px;
@@ -1286,20 +1355,6 @@ p a {
         flex-direction: column;
     }
 
-    .partners__shops {
-        /*display: grid;*/
-        /*grid-template-columns: repeat(2, 1fr);*/
-        /*row-gap: 40px;*/
-        /*column-gap: 30px;*/
-        flex-wrap: wrap;
-        justify-content: space-between;
-        row-gap: 30px;
-    }
-
-    .partners__shops img {
-        width: min(15em, 45%);
-    }
-
     .footer__nav {
         padding: 20px 0;
 
@@ -1340,6 +1395,10 @@ p a {
         display: none;
     }
 
+    .about__content {
+        display: block;
+    }
+
     .footer__row {
         flex-direction: column;
         justify-content: flex-start;
@@ -1347,27 +1406,56 @@ p a {
         gap: 30px;
     }
 
+    .partners__shops img {
+        width: min(15em, 45%);
+    }
 
 }
 
-@media (max-width: 1200px) {
-
-    .banner__img {
-        /*position: inherit;*/
-
+@media (min-width: 980px) and (max-width: 1200px) {
+    .banner__content {
+        padding-bottom: 20px;
     }
 
-    .banner__img-elem {
-        position: inherit;
-        display: flex;
-        /*bottom: 150px;*/
-        align-items: flex-end;
+    .footer__buttons {
+        gap: 8px;
+    }
+
+    .footer__buttons button {
+        margin-right: 0;
     }
 
     .footer__list {
-        gap: 20px;
+        gap: clamp(0px,1%,15px);
     }
-)
+}
+
+@media  (max-width: 1200px) {
+
+    .banner__img-elem {
+        position: relative;
+
+    }
+
+    .banner__img {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+    }
+
+    .partners__shops img {
+        row-gap: 15px;
+    }
+    .partners__shops {
+        /*display: grid;*/
+        /*grid-template-columns: repeat(2, 1fr);*/
+        /*row-gap: 40px;*/
+        /*column-gap: 30px;*/
+        flex-wrap: wrap;
+        justify-content: space-between;
+        row-gap: 30px;
+
+    }
 
 
 }

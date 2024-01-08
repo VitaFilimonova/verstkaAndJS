@@ -200,11 +200,11 @@ width: max-content;
     position: absolute;
     left: 0;
 
-
+/*transition: none;*/
 transform: none;
     /*gap: 40px;*/
     /*width: 100%;*/
-    /*transition: transform 0.25s ease-in-out; !* Smooth transition for slide change *!*/
+    transition: transform 0.25s ease-in-out; /* Smooth transition for slide change */
 }
 
 .slider__slides img {
