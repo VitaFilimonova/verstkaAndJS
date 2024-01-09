@@ -16,36 +16,37 @@ const error = document.querySelectorAll(".error")
 const closeBurgerMenu = document.querySelector(".close-burger-menu")
 const burgerButton = document.querySelector(".burger-button")
 
-const mobileMenu =  document.querySelector(".mobile-menu__container")
-const header = document.querySelector(".header")
+const mobileMenu = document.querySelector(".mobile-menu__container")
+const globalError = document.querySelector(".global-error")
+const submitButton = document.querySelector(".submit")
+
+const inputs = document.querySelectorAll("input");
 buttonSales.forEach((button) => {
     button.addEventListener("click", () => {
-    // const modal = document.querySelector(button.dataset.modalTarget);
-    openContactsTab();
-  });
-});
-
-closeButton.forEach(function(button) {
-    button.addEventListener("click",
-        function() {
-        // Получаем родительский элемент кнопки и добавляем класс "close"
-        const parent = button.parentElement;
-        console.log(parent.className)
-        parent.classList.remove("open");
-        parent.classList.add("close");
-        overlay.classList.remove("overlay-active")
-            document.body.style.overflow = 'auto';
-            // header.style.zIndex = "20"
+        // const modal = document.querySelector(button.dataset.modalTarget);
+        openContactsTab();
     });
 });
 
-// cookiesButtonClose.addEventListener("click", closeCookies);
-// closeButton.addEventListener("click", closeCookies);
+closeButton.forEach(function (button) {
+    button.addEventListener("click",
+        function () {
+            // Получаем родительский элемент кнопки и добавляем класс "close"
+            const parent = button.parentElement;
+            parent.classList.remove("open");
+            parent.classList.add("close");
+            overlay.classList.remove("overlay-active")
+            document.body.style.overflow = 'auto';
+
+        });
+});
+
+
 cookiesButtonDecline.addEventListener("click", closeCookies);
 cookiesButtonAccept.addEventListener("click", closeCookies);
 
 
-buttonSubmitForm.addEventListener("click", openThanksTab)
+// buttonSubmitForm.addEventListener("click", openThanksTab)
 
 burgerButton.addEventListener("click", function () {
     mobileMenu.classList.add('open')
@@ -55,42 +56,96 @@ closeBurgerMenu.addEventListener("click", function () {
     mobileMenu.classList.remove('open')
     document.body.style.overflow = 'auto';
 })
+// const requiredInputs = document.querySelectorAll(".required-value")
+
+
+const requiredInputs = document.querySelectorAll(".required-value");
+
+// const buttonSubmitForm = document.querySelector(".submit");
+
+function checkRequiredInputs() {
+    return [...requiredInputs].every((input) => input.value.trim().length !== 0);
+}
+
+requiredInputs.forEach((input) => {
+    input.addEventListener("focusout", () => {
+        const errorElement = input.nextElementSibling;
+        errorElement.classList.toggle("open", input.value.trim().length === 0);
+        buttonSubmitForm.disabled = !checkRequiredInputs();
+    });
+});
+
+//
+// requiredInputs.forEach((input) => {
+//     input.addEventListener("focusout", (event) => {
+//         // const value = input.value;
+//         let errorElement = event.target.nextElementSibling
+//         console.log(event.target.nextElementSibling)
+//         // console.log(event.target.validity.valid)
+//         // console.log()
+//
+//         if (event.target.value.trim().length === 0) {
+//             errorElement.classList.add("open"); // Show the error message
+//         }
+//         else {
+//             errorElement.classList.remove("open"); // Show the error message
+//         }
+//
+//         const showenErrors = input
+//         console.log(showenErrors)
+//         if (showenErrors.length === 0) {
+//             buttonSubmitForm.disabled = false;
+//             // openThanksTab()
+//         }
+//         else {
+//             buttonSubmitForm.disabled = true;
+//         }
+//     })
+// })
+submitButton.addEventListener("click", (event) => {
+    event.preventDefault()
+    inputs.forEach((input) => {
+        input.value = ""; // Устанавливаем значение инпута в пустую строку
+    });
+
+
+    buttonSubmitForm.disabled = true
+
+
+    openThanksTab()
+})
 
 superButton.addEventListener("click", function () {
     thanksForm.classList.remove("open");
     overlay.classList.remove("overlay-active")
-    // header.style.zIndex = "20"
     document.body.style.overflow = 'auto';
-
-    // thanksForm.classList.add("close");
 })
 
-requiredFields.forEach(field => {
-    field.addEventListener("submit", value => {
-       console.log(requiredFields.value)
-        if (requiredFields.value ==='') {
-            error.forEach(err=> {
-                err.classList.add("open")
-            })
-        }
-    })
-})
+// requiredFields.forEach(field => {
+//     field.addEventListener("submit", value => {
+//         console.log(requiredFields.value)
+//         if (requiredFields.value === '') {
+//             error.forEach(err => {
+//                 err.classList.add("open")
+//             })
+//         }
+//     })
+// })
+
 function closeCookies() {
-  // if (modal != null) return
-  cookies.classList.add("close");
+    cookies.classList.add("close");
 }
 
 function openContactsTab() {
-  // if (modal === null) return;
-  contactsTab.classList.add("open");
-  overlay.classList.add("overlay-active")
+    contactsTab.classList.add("open");
+    overlay.classList.add("overlay-active")
     document.body.style.overflow = 'hidden'; // Блокируем скроллинг страницы
-    // header.style.zIndex = "0"
 }
 
 function openThanksTab() {
     contactsTab.classList.remove("open");
     thanksForm.classList.add("open")
+
 }
 
 function closeTab() {
@@ -98,5 +153,6 @@ function closeTab() {
     console.log(parent)
     parent.classList.remove("open");
     parent.classList.add("close");
-
 }
+
+

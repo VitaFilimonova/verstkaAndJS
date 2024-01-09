@@ -436,56 +436,58 @@
 <section>
     <div class="contacts-tab">
         <form class="contacts-form">
-            <div class="input">
-                <h6 class="input__title required">Name</h6>
-                <label>
-                    <input class="contacts__input required-value" placeholder="Enter name" required type="text">
-                </label>
-                <span class="error ">This field is required.</span>
+            <div class="inputs">
+                <div class="input">
+                    <h6 class="input__title required">Name</h6>
+                    <label for="name"> </label>
+                    <input class="contacts__input required-value" id="name" placeholder="Enter name" required
+                           type="text">
+
+                    <span class="error">This field is required.</span>
+                </div>
+
+                <div class="input">
+                    <h6 class="input__title required">Email</h6>
+                    <label for="email"> </label>
+                    <input class="contacts__input required-value" id="email" placeholder="Enter email" required
+                           type="text">
+
+                    <span class="error">This field is required.</span>
+                </div>
+
+                <div class="input">
+                    <h6 class="input__title required">Phone number</h6>
+                    <label for="phone-number"> </label>
+                    <input class="contacts__input required-value phone-number" id="phone-number"
+                           placeholder="+7 000 000 00 00" required>
+
+                    <span class="error">This field is required.</span>
+                </div>
+
+                <div class="input">
+                    <h6 class="input__title">Company</h6>
+                    <label for="company"> </label>
+                    <input class="contacts__input" id="company" placeholder="Enter company">
+
+                </div>
+
+                <div class="input">
+                    <h6 class="input__title">Website/Store URL</h6>
+                    <label for="website"> </label>
+                    <input class="contacts__input" id="website" placeholder="Enter Website/Store URL">
+                </div>
             </div>
 
-            <div class="input">
-                <h6 class="input__title required">Email</h6>
-                <label>
-                    <input class="contacts__input required-value" placeholder="Enter email" required type="text">
-                </label>
-                <span class="error ">This field is required.</span>
-            </div>
 
-            <div class="input">
-                <h6 class="input__title required">Phone number</h6>
-                <label>
-                    <input class="contacts__input required-value phone-number" placeholder="+7 000 000 00 00" required>
-                </label>
-                <span class="error">This field is required.</span>
-            </div>
-
-            <div class="input">
-                <h6 class="input__title">Company</h6>
-                <label>
-                    <input class="contacts__input" placeholder="Enter company">
-                </label>
-            </div>
-
-            <div class="input">
-                <h6 class="input__title">Website/Store URL</h6>
-                <label>
-                    <input class="contacts__input" placeholder="Enter Website/Store URL">
-                </label>
-            </div>
-
-            <div class="global-error">
-               <span>
+            <span class="global-error">
                     Please fill in all required fields
                </span>
-                <p class="contacts__description">
-                    By submitting this form you are agreeing to Budss’s <a href="#">Privacy Policy</a> and <a href="#">Terms
-                    of Use</a>
-                </p>
+            <p class="contacts__description">
+                By submitting this form you are agreeing to Budss’s <a href="#">Privacy Policy</a> and <a href="#">Terms
+                of Use</a>
+            </p>
 
-                <button class="button submit">Contact sales</button>
-            </div>
-
+            <button class="button submit" type="submit" disabled>Contact sales</button>
 
         </form>
         <button class="close-button">

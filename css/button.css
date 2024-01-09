@@ -78,4 +78,5 @@
 
 button:disabled {
   background-color: var(--grayscale-03);
+  pointer-events: none;
 }
