@@ -61,47 +61,72 @@ closeBurgerMenu.addEventListener("click", function () {
 
 const requiredInputs = document.querySelectorAll(".required-value");
 
-// const buttonSubmitForm = document.querySelector(".submit");
-
 function checkRequiredInputs() {
-    return [...requiredInputs].every((input) => input.value.trim().length !== 0);
+    return [...requiredInputs].every((input) =>
+        input.value.trim().length !== 0 && phoneInput.value.length ===16
+    );
+}
+
+function toggleErrorElement(input) {
+    const errorElement = input.nextElementSibling;
+    errorElement.classList.toggle("open", input.value.trim().length === 0);
+    if (errorElement.className === "error open") {
+        input.classList.add("input-error");
+    } else {
+        input.classList.remove("input-error");
+    }
 }
 
 requiredInputs.forEach((input) => {
     input.addEventListener("focusout", () => {
-        const errorElement = input.nextElementSibling;
-        errorElement.classList.toggle("open", input.value.trim().length === 0);
+        if (phoneInput.value.length >= 16) {
+            toggleErrorElement(input);
+        }
+
+        const hasEmptyRequiredFields = [...requiredInputs].some(
+            (input) => input.value.trim().length === 0
+        );
+
+        const globalErrorElement = document.querySelector(".global-error");
+        globalErrorElement.classList.toggle("open", hasEmptyRequiredFields);
         buttonSubmitForm.disabled = !checkRequiredInputs();
     });
 });
 
+
+
+// function checkRequiredInputs() {
+//     return [...requiredInputs].every((input) =>
+//         input.value.trim().length !== 0 && phoneInput.values.length > 10
+//
+//     );
+// }
 //
 // requiredInputs.forEach((input) => {
-//     input.addEventListener("focusout", (event) => {
-//         // const value = input.value;
-//         let errorElement = event.target.nextElementSibling
-//         console.log(event.target.nextElementSibling)
-//         // console.log(event.target.validity.valid)
-//         // console.log()
-//
-//         if (event.target.value.trim().length === 0) {
-//             errorElement.classList.add("open"); // Show the error message
-//         }
-//         else {
-//             errorElement.classList.remove("open"); // Show the error message
+//     input.addEventListener("focusout", () => {
+//         const errorElement = input.nextElementSibling;
+//         errorElement.classList.toggle("open", input.value.trim().length === 0);
+//         if(errorElement.className === "error open") {
+//             input.classList.add("input-error")
+//         } else {
+//             input.classList.remove("input-error")
 //         }
 //
-//         const showenErrors = input
-//         console.log(showenErrors)
-//         if (showenErrors.length === 0) {
-//             buttonSubmitForm.disabled = false;
-//             // openThanksTab()
-//         }
-//         else {
-//             buttonSubmitForm.disabled = true;
-//         }
-//     })
-// })
+//         buttonSubmitForm.disabled = !checkRequiredInputs();
+//
+//
+//
+//         const hasEmptyRequiredFields = [...requiredInputs].some(
+//             (input) => input.value.trim().length === 0
+//         );
+//
+//         // Отображаем или скрываем глобальную ошибку
+//         const globalErrorElement = document.querySelector(".global-error");
+//         globalErrorElement.classList.toggle("open", hasEmptyRequiredFields);
+//     });
+// });
+
+
 submitButton.addEventListener("click", (event) => {
     event.preventDefault()
     inputs.forEach((input) => {
@@ -121,17 +146,6 @@ superButton.addEventListener("click", function () {
     document.body.style.overflow = 'auto';
 })
 
-// requiredFields.forEach(field => {
-//     field.addEventListener("submit", value => {
-//         console.log(requiredFields.value)
-//         if (requiredFields.value === '') {
-//             error.forEach(err => {
-//                 err.classList.add("open")
-//             })
-//         }
-//     })
-// })
-
 function closeCookies() {
     cookies.classList.add("close");
 }
@@ -148,11 +162,62 @@ function openThanksTab() {
 
 }
 
-function closeTab() {
-    const parent = button.parentElement;
-    console.log(parent)
-    parent.classList.remove("open");
-    parent.classList.add("close");
-}
+
+
+
+
+
+
+
+
+const phoneInput = document.querySelector("#phone-number")
+
+const prefixNumber = (str) => {
+
+    return "+7 ";
+};
+
+phoneInput.addEventListener("input", (e) => {
+    const value = phoneInput.value.replace(/\D+/g, "");
+    const numberLength = 11;
+
+    let result = '';
+
+    for (let i = 0; i < value.length && i < numberLength; i++) {
+        switch (i) {
+            case 0:
+                result += prefixNumber(value[i]);
+                continue;
+            case 4:
+                result += " ";
+                break;
+            case 7:
+                result += " ";
+                break;
+            case 9:
+                result += " ";
+                break;
+            default:
+                break;
+        }
+        result += value[i];
+    }
+    //
+    phoneInput.value = result;
+
+});
+ const invalidError = document.querySelector(".error-invalid")
+
+
+phoneInput.addEventListener("focusout", function () {
+
+    console.log(phoneInput.value.length)
+    if ( phoneInput.value.length <16) {
+        invalidError.classList.add("open")
+    }
+    else {
+        invalidError.classList.remove("open")
+    }
+})
 
 
