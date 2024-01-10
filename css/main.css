@@ -2,8 +2,6 @@
 @import "button.css";
 @import "../fonts/fonts.css";
 
-/*@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;900&display=swap');*/
-
 :root {
     --grayscale-00: #000000;
     --grayscale-01: #181818;
@@ -33,13 +31,6 @@ body {
     background: var(--grayscale-01);
 }
 
-aside,
-nav,
-footer,
-header,
-section {
-    /*display: block;*/
-}
 
 h1,
 h2,
@@ -51,79 +42,34 @@ p {
     font-family: var(--font-regular);
 }
 
-/*mark {*/
-/*    color: var(--grayscale-07);*/
-/*}*/
-
-/*.marker {*/
-/*    width: 353px;*/
-/*    height: 40px;*/
-/*    !*transform: rotate(-30grad);*!*/
-/*    transform: rotate(-2deg); !* Adjust skew angle as needed *!*/
-/*    transform-origin: top left; !* Keeps the left edge aligned *!*/
-/*    writing-mode: sideways-lr;*/
-/*    !*flex-shrink: 0;*!*/
-/*    border-radius: 30px;*/
-/*    background: var(--primary-02);*/
-/*    !*width: 110%;*!*/
-/*    white-space: nowrap;*/
-/*    display: inline-block;*/
-/*    !*position: absolute;*!*/
-/*    !*right: 0;*!*/
-/*    !*bottom: 0;*!*/
-/*    !*z-index: 0;*!*/
-/*    !*display: inline;*!*/
-/*    !*box-decoration-break: clone; !* This ensures the background spans line breaks *!*!*/
-/*    !*-webkit-box-decoration-break: clone;*!*/
-
-/*}*/
-
 mark {
     color: var(--grayscale-07);
     background: none;
-    /*border-radius: 30px; !* This will be applied to the text itself *!*/
     white-space: nowrap;
-    display: inline-block; /* Needed to apply dimensions */
-    position: relative; /* Establish a positioning context for pseudo-element */
+    display: inline-block;
+    position: relative;
 }
 
 .marker::before {
     content: '';
     position: absolute;
-    z-index: -1; /* Ensure the background is behind the text */
+    z-index: -1;
     top: 22%;
     left: -5%;
-    width: 110%; /* Match the width of the mark element */
-    height: clamp(25px, 70%, 35px); /* Height of the background */
+    width: 110%;
+    height: clamp(25px, 70%, 35px);
     background: var(--primary-02);
-    border-radius: 30px; /* Apply border-radius to the background */
+    border-radius: 30px;
     transform: rotate(-1.7deg);
     transform-origin: top left;
-    /* Adjust these values as needed to position the background */
     white-space: nowrap;
-    display: block; /* Needed to apply dimensions */
+    display: block;
 }
 
-/* Reset the styles for <mark> to prevent text from rotating */
+
 .marker {
-    transform: none; /* Remove rotation from text */
+    transform: none;
 }
-
-/*.marker:after {*/
-/*    content: '';*/
-/*    position: absolute;*/
-/*    z-index: 1; !* Stacks below the text *!*/
-/*    left: 0;*/
-/*    right: 0;*/
-/*    top: 50%; !* Adjust this value as needed *!*/
-/*    bottom: 50%; !* Adjust this value as needed *!*/
-/*    background-color: #7d4cdb; !* purple background *!*/
-/*    transform: skewX(-50deg); !* Adjust skew angle as needed *!*/
-/*    transform-origin: top left; !* Keeps the left edge aligned *!*/
-/*    display: block;*/
-/*    width: 120%; !* Ensures full coverage behind the text *!*/
-/*    !*height: 2em; !* Adjust height to cover text *!*!*/
-/*}*/
 
 .nav {
     display: flex;
@@ -145,9 +91,6 @@ mark {
 .nav__tab-item {
     display: flex;
     padding: 9px 40px;
-    /*justify-content: center;*/
-    /*align-items: center;*/
-    /*gap: 10px;*/
 }
 
 .nav__tab-item--active {
@@ -172,8 +115,6 @@ mark {
     font-size: 37px;
     font-weight: 600;
     text-transform: lowercase;
-    /*position: fixed;*/
-    /*width: 100%;*/
 }
 
 .logo {
@@ -210,7 +151,6 @@ mark {
     border-radius: 16px;
     position: fixed;
     z-index: 20;
-    /*margin: 0 auto;*/
     bottom: 2%;
     left: 50%;
     transition: transform 2s, opacity 0.8s;
@@ -220,11 +160,9 @@ mark {
 @keyframes cookies {
     0% {
         transform: translateY(100%) translateX(-50%);
-        /*opacity: 0;*/
     }
     100% {
         transform: translateY(0) translateX(-50%);
-        /*opacity: 1;*/
     }
 }
 
@@ -258,11 +196,8 @@ mark {
 
 .banner__content {
     max-width: 1440px;
-    /*display: flex;*/
     color: var(--grayscale-07, #fff);
-    /*margin-left: 110px;*/
     overflow: hidden;
-    /*position: relative;*/
 
     font-size: 20px;
     font-weight: 400;
@@ -271,11 +206,8 @@ mark {
 }
 
 .banner__description {
-    /*display: flex;*/
     flex-direction: column;
     margin-left: 50px;
-
-    /*text-align: center;*/
 }
 
 .banner__header {
@@ -298,11 +230,8 @@ mark {
     position: relative;
     width: 100%;
     height: 100%;
-    /*max-width: 1440px;*/
     margin: 0;
     padding: 0;
-    /*right: 0;*/
-
 }
 
 .banner__img-elem {
@@ -310,7 +239,6 @@ mark {
     right: 0;
     bottom: 0;
     width: min(90%, 550px);
-    /*height: max(90% , 600px );*/
 }
 
 #About,
@@ -333,10 +261,9 @@ mark {
 
 .about__header {
     color: var(--grayscale-07);
-    /*margin-bottom: clamp(30px,3vw,80px)*/
 }
 
-.header__title {
+.about__title {
     font-size: clamp(40px, 9vw, 96px);
     font-weight: 700;
     line-height: 106%;
@@ -426,15 +353,12 @@ mark {
 }
 
 .animated-section__phone {
-    /*width: 300px;*/
     margin: 0 auto;
     outline: none;
     position: relative;
     z-index: 9;
     display: flex;
     justify-content: center;
-    /*width: clamp(228px, 10rem, 308px);*/
-    /*height: clamp(461px, 10rem, 623px);*/
 
 }
 
@@ -470,48 +394,34 @@ mark {
     transform: translate(-50%, -50%);
 }
 
-.text__item {
+.animated-section__item {
     display: flex;
     gap: 20px;
-    /*position: relative;*/
-    /*overflow: hidden;*/
     flex-shrink: 0;
 }
 
-.text__item-container {
+.animated-section__line {
     display: flex;
     gap: 20px;
 }
 
-.text__item-container--first-line {
+.animated-section__line--first-line {
     color: var(--secondary-01);
 }
 
-.text__item-container--second-line {
+.animated-section__line--second-line {
     color: var(--primary-02);
 }
 
-.text__item-container--third-line {
+.animated-section__line--third-line {
     color: var(--secondary-02);
 }
 
-/*.text__item-words:nth-child(2n) {*/
-/*    text-shadow: none;*/
-/*    color: var(--secondary-01);*/
-/*}*/
-/*.text__item-container:nth-child(2n) {*/
-/*    text-shadow: none;*/
-/*    color: var(--primary-00);*/
-/*}*/
-/*.text__item-container:nth-child(2n) {*/
-/*    text-shadow: none;*/
-/*    color: var(--secondary-02);*/
-/*}*/
-.left-moving {
+.animated-section__item--left-moving {
     animation: scroll-left 15s linear infinite;
 }
 
-.right-moving {
+.animated-section__item--right-moving {
     animation: scroll-right 15s linear infinite;;
 }
 
@@ -530,24 +440,17 @@ mark {
     }
     100% {
         transform: translateX(0);
-
     }
 }
 
 
 .first-line {
     display: flex;
-
 }
 
 .text__item-words {
-
-    /*color: var(--secondary-02);*/
-
     position: relative;
     text-align: center;
-
-
 }
 
 .text__item-words:nth-child(even) {
@@ -557,15 +460,10 @@ mark {
     1px -1px 0 var(--grayscale-02),
     -1px 1px 0 var(--grayscale-02),
     1px 1px 0 var(--grayscale-02);
-
-
 }
 
 
 #Blocks,
-.blocks-section {
-
-}
 
 .blocks {
     background-color: var(--primary-01);
@@ -724,19 +622,15 @@ mark {
     font-size: clamp(16px, 3vw, 20px);
     font-weight: 400;
     line-height: 120%;
-    /*max-width: 334px;*/
 }
 
 .solutions__card {
-    /*display: ;*/
     background-color: var(--grayscale-06);
     border-radius: 30px;
     position: relative;
     height: 362px;
     width: 100%;
-    /*padding: 0 40px 0 0;*/
     display: flex;
-    /*align-items: flex-start;*/
     overflow: hidden;
 }
 
@@ -751,7 +645,6 @@ mark {
 
 .solutions__content--cashback {
     padding-left: clamp(20px, 4vw, 40px);
-    /*max-width: 440px;*/
 }
 
 .solutions__card-text--cashback {
@@ -768,9 +661,7 @@ mark {
 }
 
 .solutions__img--ai {
-    /*position: absolute;*/
     bottom: 0;
-    /*right: 50px;*/
     height: clamp(185px, 30vw, 300px);
 }
 
@@ -835,10 +726,6 @@ mark {
     gap: clamp(28px, 4vw, 40px);
 }
 
-.partners__social-link:last-child {
-    /*gap: 0;*/
-}
-
 .partners__social-link:nth-child(even) {
     margin-top: 135px;
 }
@@ -847,12 +734,7 @@ mark {
     margin-top: clamp(20px, 5vw, 45px);
 }
 
-
-.partners__social-link {
-    /*height: 40px;*/
-}
-
-.social-link__img {
+.partners__social-link-img {
     width: clamp(64px, 13vw, 90px);
     height: clamp(64px, 13vw, 90px);
 }
@@ -870,10 +752,7 @@ mark {
 }
 
 .footer__nav {
-    /*display: flex;*/
     padding: 40px 0 20px 0;
-    /*flex-direction: column;*/
-    /*align-items: flex-start;*/
     gap: 10px;
     margin: 0 auto;
     justify-content: space-between;
@@ -918,7 +797,6 @@ mark {
     line-height: 140%;
 
     padding-top: 20px;
-    /*padding-bottom: 20px;*/
     border-top: 1px solid var(--grayscale-03);
 
     display: flex;
@@ -940,11 +818,12 @@ mark {
 }
 
 .footer__links-item {
-    text-decoration: underline;
+    text-decoration: underline !important;
+    color: var(--grayscale-03);
 }
 
 
-.contacts-tab {
+.contacts-tab__content {
     margin: 0 auto;
     left: 50%;
     top: 50%;
@@ -966,23 +845,23 @@ mark {
     gap: 20px;
 }
 
-.inputs {
+.contacts-form__inputs {
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
 
-.input {
+.contacts-form__input {
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
 
-.submit {
+.button-submit {
     position: relative;
 }
 
-.input__title {
+.contacts-form__input-title {
     color: var(--grayscale-01, #070707);
 
     font-family: var(--font-medium);
@@ -991,7 +870,7 @@ mark {
     line-height: 22px;
 }
 
-.contacts__input {
+.contacts-form__input-field {
     border-radius: 14px;
     border: 1px solid var(--grayscale-04, #F1F1F1);
     width: 100%;
@@ -1009,17 +888,17 @@ mark {
 
 }
 
-.error {
+.contacts-form__error {
     color: var(--additional-02, #EC1211);
     display: none;
 
     font-family: var(--font-regular);
     font-size: 12px;
     font-weight: 400;
-    line-height: 20px; /* 166.667% */
+    line-height: 20px;
 }
 
-.global-error {
+.contacts-form__global-error{
 
     display: none;
     flex-direction: column;
@@ -1038,7 +917,6 @@ mark {
 
 .overlay {
     position: fixed;
-    /*content: "";*/
     opacity: 0;
     transition: 200ms ease-in-out;
     top: 0;
@@ -1048,7 +926,6 @@ mark {
     background-color: rgba(0, 0, 0, .8);
     pointer-events: none;
     z-index: 99;
-
 }
 
 .overlay-active {
@@ -1056,7 +933,7 @@ mark {
     opacity: 1;
 }
 
-.input__title.required::after {
+.contacts-form__input-title.required::after {
     content: ' *';
     color: var(--additional-02);
     font-size: 15px;
@@ -1091,7 +968,7 @@ label {
     display: none;
 }
 
-.contacts__description {
+.contacts-form__description {
     color: var(--grayscale-00, #000);
 
     font-family: var(--font-light);
@@ -1189,11 +1066,6 @@ p a {
 
 }
 
-.mobile-menu__tabs-all {
-    margin-top: 177px;
-}
-
-
 .mobile-menu__tabs {
     display: flex;
     flex-direction: column;
@@ -1206,22 +1078,20 @@ p a {
     font-weight: 500;
     line-height: normal;
     gap: 16px;
+    margin-top: 177px;
 }
 
 .mobile-menu__tab {
     white-space: nowrap;
 }
 
-.close-burger-menu {
-    /*background: url("./../images/close-burger-menu.svg") no-repeat 15px 16px;*/
-    /*height: 60px;*/
-    /*width: 60px;*/
+.mobile-menu__close-button {
     position: absolute;
     top: 16px;
     right: 16px;
 }
 
-.close-burger-menu__img {
+.mobile-menu__close-img {
     pointer-events: none;
 }
 
@@ -1246,9 +1116,6 @@ p a {
 
 @media (max-width: 768px) {
 
-    /*.container {*/
-    /*    padding: 0 16px;*/
-    /*}*/
     .button-footer {
         margin-bottom: 40px;
     }
@@ -1348,7 +1215,6 @@ p a {
     }
 
     .blocks__text {
-        /*font-size: 20px;*/
         width: 100%;
         white-space: nowrap;
     }
@@ -1384,7 +1250,6 @@ p a {
         max-width: none;
 
     }
-
 
     .solutions__img--ai {
         right: 55px;
@@ -1426,15 +1291,11 @@ p a {
         display: flex;
     }
 
-    .footer__logo {
-        /*margin-bottom: 40px;*/
-    }
-
     .footer__links {
         display: none;
     }
 
-    .contacts-tab {
+    .contacts-tab__content {
         padding: 20px 16px;
         width: 335px;
     }
@@ -1461,8 +1322,6 @@ p a {
     .partners__shops img {
         width: min(15em, 45%);
     }
-
-
 }
 
 @media (min-width: 980px) and (max-width: 1200px) {
@@ -1530,6 +1389,4 @@ p a {
         justify-content: space-between;
         row-gap: 30px;
     }
-
-
 }

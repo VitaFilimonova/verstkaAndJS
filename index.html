@@ -17,18 +17,20 @@
 </nav>
 
 <header class="header">
-    <a class="logo">
-        <img src="images/logo.svg" alt="budds"/>
-        budds
-    </a>
+    <div class="header__logo">
+        <a class="logo" href="#">
+            <img src="images/logo.svg" alt="budds"/>
+            budds
+        </a>
+    </div>
+
     <button class="button button-sales" id="header-button">Contact sales</button>
     <button class="burger-button">
         <img class="burger-button__img " src="images/burger-menu.svg" alt="mobile-menu">
-        <!
     </button>
 </header>
 
-<div class="cookies" id="cookies">
+<div class="cookies">
     <div class="cookies__container">
         <p class="cookies__text">
             This website uses cookies to ensure
@@ -74,7 +76,7 @@
 <section class="about">
     <div class="container">
         <div class="about__header">
-            <h1 class="header__title">About Budss</h1>
+            <h1 class="about__title">About Budss</h1>
         </div>
         <div class="about__content">
             <div class="about__subtitle">
@@ -84,7 +86,6 @@
                         shoppers
                     </mark>
                 </p>
-                <div class="marker"></div>
             </div>
 
             <div class="about__cards">
@@ -167,34 +168,34 @@
 
 
         <div class="animated-section__text">
-            <div class="text__item-container  text__item-container--first-line ">
-                <div class="text__item right-moving">
+            <div class="animated-section__line  animated-section__line--first-line ">
+                <div class="animated-section__item animated-section__item--right-moving">
                     <span class="text__item-words ">How Budds Works</span>
                     <span class="text__item-words ">How Budds Works</span>
                 </div>
-                <div class="text__item right-moving">
-                    <span class="text__item-words ">How Budds Works</span>
-                    <span class="text__item-words ">How Budds Works</span>
-                </div>
-            </div>
-
-            <div class="text__item-container  text__item-container--second-line">
-                <div class="text__item left-moving">
-                    <span class="text__item-words ">How Budds Works</span>
-                    <span class="text__item-words ">How Budds Works</span>
-                </div>
-                <div class="text__item left-moving">
+                <div class="animated-section__item animated-section__item--right-moving">
                     <span class="text__item-words ">How Budds Works</span>
                     <span class="text__item-words ">How Budds Works</span>
                 </div>
             </div>
 
-            <div class="text__item-container  text__item-container--third-line ">
-                <div class="text__item right-moving">
+            <div class="animated-section__line  animated-section__line--second-line">
+                <div class="animated-section__item animated-section__item--left-moving">
                     <span class="text__item-words ">How Budds Works</span>
                     <span class="text__item-words ">How Budds Works</span>
                 </div>
-                <div class="text__item right-moving">
+                <div class="animated-section__item animated-section__item--left-moving">
+                    <span class="text__item-words ">How Budds Works</span>
+                    <span class="text__item-words ">How Budds Works</span>
+                </div>
+            </div>
+
+            <div class="animated-section__line  animated-section__line--third-line ">
+                <div class="animated-section__item animated-section__item--right-moving">
+                    <span class="text__item-words ">How Budds Works</span>
+                    <span class="text__item-words ">How Budds Works</span>
+                </div>
+                <div class="animated-section__item animated-section__item--right-moving">
                     <span class="text__item-words ">How Budds Works</span>
                     <span class="text__item-words ">How Budds Works</span>
                 </div>
@@ -231,7 +232,6 @@
                 <mark class="marker">To Grow Your Business</mark>
 
             </p>
-            <!--            <div class="marker"></div>-->
         </div>
 
 
@@ -351,21 +351,21 @@
                 <div class="partners__social-apps">
 
                     <a class="partners__social-link" href="#">
-                        <img class="social-link__img" src="images/social-apps/facebook.svg" alt="facebook-logo">
+                        <img class="partners__social-link-img" src="images/social-apps/facebook.svg" alt="facebook-logo">
                     </a>
 
                     <a class="partners__social-link" href="#">
-                        <img class="social-link__img" src="images/social-apps/twitter.svg" alt="twitter-logo">
-                    </a>
-
-
-                    <a class="partners__social-link" href="#">
-                        <img class="social-link__img" src="images/social-apps/instagram.svg" alt="instagram-logo">
+                        <img class="partners__social-link-img" src="images/social-apps/twitter.svg" alt="twitter-logo">
                     </a>
 
 
                     <a class="partners__social-link" href="#">
-                        <img class="social-link__img" src="images/social-apps/tik-tok.svg" alt="tik-tok-logo">
+                        <img class="partners__social-link-img" src="images/social-apps/instagram.svg" alt="instagram-logo">
+                    </a>
+
+
+                    <a class="partners__social-link" href="#">
+                        <img class="partners__social-link-img" src="images/social-apps/tik-tok.svg" alt="tik-tok-logo">
                     </a>
 
                 </div>
@@ -387,7 +387,7 @@
         <div class="footer__nav">
             <div class="footer__row">
                 <div class="footer__logo">
-                    <a class="logo">
+                    <a class="logo" href="#">
                         <img src="images/logo.svg" alt="budds"/>
                         budds
                     </a>
@@ -433,49 +433,49 @@
     </div>
 </footer>
 
-<section>
-    <div class="contacts-tab">
+<section  class="contacts-tab">
+    <div class="contacts-tab__content">
         <form class="contacts-form">
-            <div class="inputs">
-                <div class="input">
-                    <h6 class="input__title required">Name</h6>
+            <div class="contacts-form__inputs">
+                <div class="contacts-form__input">
+                    <h6 class="contacts-form__input-title required">Name</h6>
                     <label for="name"> </label>
-                    <input class="contacts__input required-value" id="name" placeholder="Enter name" required
+                    <input class="contacts-form__input-field required-value" id="name" placeholder="Enter name" required
                            type="text">
 
-                    <span class="error">This field is required.</span>
+                    <span class="contacts-form__error">This field is required.</span>
                 </div>
 
-                <div class="input">
-                    <h6 class="input__title required">Email</h6>
+                <div class="contacts-form__input">
+                    <h6 class="contacts-form__input-title required">Email</h6>
                     <label for="email"> </label>
-                    <input class="contacts__input required-value" id="email" placeholder="Enter email" required
+                    <input class="contacts-form__input-field required-value" id="email" placeholder="Enter email" required
                            type="text">
 
-                    <span class="error">This field is required.</span>
+                    <span class="contacts-form__error">This field is required.</span>
                 </div>
 
-                <div class="input">
-                    <h6 class="input__title required">Phone number</h6>
+                <div class="contacts-form__input">
+                    <h6 class="contacts-form__input-title required">Phone number</h6>
                     <label for="phone-number"> </label>
-                    <input class="contacts__input required-value phone-number" id="phone-number"
-                           placeholder="+7 999 999 99 99"   required>
+                    <input class="contacts-form__input-field required-value phone-number" id="phone-number"
+                           placeholder="+7 999 999 99 99" required>
 
-                    <span class="error">This field is required.</span>
-                    <span class="error error-invalid">Invalid phone number.</span>
+                    <span class="contacts-form__error">This field is required.</span>
+                    <span class="contacts-form__error error-invalid">Invalid phone number.</span>
                 </div>
 
-                <div class="input">
-                    <h6 class="input__title">Company</h6>
+                <div class="contacts-form__input">
+                    <h6 class="contacts-form__input-title">Company</h6>
                     <label for="company"> </label>
-                    <input class="contacts__input" id="company" placeholder="Enter company">
+                    <input class="contacts-form__input-field" id="company" placeholder="Enter company">
 
                 </div>
 
-                <div class="input">
-                    <h6 class="input__title">Website/Store URL</h6>
+                <div class="contacts-form__input">
+                    <h6 class="contacts-form__input-title">Website/Store URL</h6>
                     <label for="website"> </label>
-                    <input class="contacts__input" id="website" placeholder="Enter Website/Store URL">
+                    <input class="contacts-form__input-field" id="website" placeholder="Enter Website/Store URL">
                 </div>
             </div>
 
@@ -483,12 +483,12 @@
             <span class="global-error">
                     Please fill in all required fields
                </span>
-            <p class="contacts__description">
+            <p class="contacts-form__description">
                 By submitting this form you are agreeing to Budss’s <a href="#">Privacy Policy</a> and <a href="#">Terms
                 of Use</a>
             </p>
 
-            <button class="button submit" type="submit" disabled>Contact sales</button>
+            <button class="button button-submit" type="submit" disabled>Contact sales</button>
 
         </form>
         <button class="close-button">
@@ -499,34 +499,35 @@
 
 <div class="thanks-tab">
     <div class="thanks-tab__container">
-        <img src="images/purple-man-thanks.svg" alt="purple-man-thanks">
+        <img class="thanks__img" src="images/purple-man-thanks.svg" alt="purple-man-thanks">
         <h3 class="thanks-tab__title">Thank you!</h3>
         <p class="thanks-tab__subtitle">Thank you, we have received
             your application and will contact you soon!</p>
-        <button class="button super-button">Super</button>
+        <button class="button button--super">Super</button>
     </div>
 
     <button class="close-button">
         <img src="images/close-button.svg" alt="close-button">
     </button>
 </div>
+
 <div class="overlay"></div>
 
 <section class="mobile-menu">
     <div class="mobile-menu__container">
-        <button class="close-burger-menu">
-            <img class="close-burger-menu__img" src="images/close-burger-menu.svg" alt="close-mobile-menu">
+        <button class="mobile-menu__close-button">
+            <img class="mobile-menu__close-img" src="images/close-burger-menu.svg" alt="close-mobile-menu">
         </button>
         <button class="button button-sales">Contact sales</button>
-        <div class="mobile-menu__tabs-all">
-            <ul class="mobile-menu__tabs">
-                <li class="mobile-menu__tab">For Business</li>
-                <li class="mobile-menu__tab">For Customers</li>
-                <li class="mobile-menu__tab">Privacy Policy</li>
-                <li class="mobile-menu__tab">Terms Of Use - Seller</li>
-                <li class="mobile-menu__tab">Terms of Use - Sellers & Customers</li>
-            </ul>
-        </div>
+
+        <ul class="mobile-menu__tabs">
+            <li class="mobile-menu__tab">For Business</li>
+            <li class="mobile-menu__tab">For Customers</li>
+            <li class="mobile-menu__tab">Privacy Policy</li>
+            <li class="mobile-menu__tab">Terms Of Use - Seller</li>
+            <li class="mobile-menu__tab">Terms of Use - Sellers & Customers</li>
+        </ul>
+
     </div>
 </section>
 
