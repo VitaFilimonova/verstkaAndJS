@@ -1043,6 +1043,7 @@ p a {
 
 .button-super {
     width: 100%;
+    position: relative;
 }
 
 .mobile-menu__open-button {
