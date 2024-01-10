@@ -182,7 +182,7 @@ mark {
 }
 
 .cookies__button {
-    max-height: 57px;
+    /*max-height: 57px;*/
 }
 
 
@@ -808,8 +808,8 @@ mark {
     align-items: center;
 }
 
-.footer__buttons button {
-    margin-right: 20px;
+.footer__button:nth-child(2){
+    margin-left: 20px;
 }
 
 .footer__links {
@@ -991,24 +991,18 @@ p a {
     display: flex !important;
 }
 
-
 .thanks-tab {
     background-color: var(--grayscale-07);
-
     width: 417px;
     padding: 40px;
     display: none;
-
-
     border-radius: 20px;
     margin: 0 auto;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
     position: fixed;
-
     z-index: 999;
-
 }
 
 .thanks-tab__container {
@@ -1044,6 +1038,7 @@ p a {
 .button-super {
     width: 100%;
     position: relative;
+    overflow: hidden;
 }
 
 .mobile-menu__open-button {
@@ -1331,8 +1326,8 @@ p a {
         gap: 8px;
     }
 
-    .footer__buttons button {
-        margin-right: 0;
+    .footer__button:nth-child(2){
+        margin-left: 0;
     }
 
     .footer__list {

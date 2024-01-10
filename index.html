@@ -39,7 +39,7 @@
             to constantly improve the website for you.
         </p>
         <div class="cookies__buttons">
-            <button class="button cookies__button" id="accept-cookies">Accept</button>
+            <button class="button button--no-border cookies__button" id="accept-cookies">Accept</button>
             <button class="button cookies__button" id="decline-cookies">Decline</button>
         </div>
     </div>
@@ -65,11 +65,16 @@
         </div>
     </div>
     <div class="banner__img">
-        <img
-                class="banner__img-elem"
-                src="images/banner.svg"
-                alt="orange-pattern"
-        >
+        <picture>
+            <source type="image/webp" srcset="images/banner/banner.webp">
+            <img
+                    class="banner__img-elem"
+                    src="images/banner@1x.jpg"
+                    srcset="images/banner@2x.jpg"
+                    alt="orange-pattern-and-woman"
+            >
+        </picture>
+
     </div>
 </section>
 
@@ -92,7 +97,7 @@
                 <div class="card about__card">
                     <img
                             class="card__img"
-                            src="images/about_decor1.svg"
+                            src="images/about-section/about_decor1.svg"
                             alt="decor"
                     >
                     <h3 class="card__header">Contactless</h3>
@@ -105,7 +110,7 @@
                 <div class="card about__card">
                     <img
                             class="card__img"
-                            src="images/about_decor2.svg"
+                            src="images/about-section/about_decor2.svg"
                             alt="decor"
                     >
                     <h3 class="card__header">Increased Buying Power</h3>
@@ -115,7 +120,7 @@
                 <div class="card about__card">
                     <img
                             class="card__img"
-                            src="images/about_decor3.svg"
+                            src="images/about-section/about_decor3.svg"
                             alt="decor"
                     >
                     <h3 class="card__header">Analytics & Insights</h3>
@@ -128,7 +133,7 @@
                 <div class="card about__card">
                     <img
                             class="card__img"
-                            src="images/about_decor4.svg"
+                            src="images/about-section/about_decor4.svg"
                             alt="decor"
                     >
                     <h3 class="card__header">Fraud Protection</h3>
@@ -143,7 +148,7 @@
     </div>
 
     <div class="about__background">
-        <img class="about__img" src="images/about_pattern.svg" alt="pattern">
+        <img class="about__img" src="images/about-section/about_pattern.svg" alt="pattern">
     </div>
 </section>
 
@@ -337,7 +342,7 @@
                 <h3 class="partners__title">
                     Let Your Business Grow
                 </h3>
-                <button class="button button-sales">Contact sales</button>
+                <button class="button button-sales button--no-border">Contact sales</button>
             </div>
 
             <div class="partners__description">
@@ -401,12 +406,12 @@
                 </ul>
                 <div class="footer__buttons">
                     <button class="button button-sales button-footer">Contact sales</button>
-                    <div>
+                    <div class="footer__button">
                         <a class="app-store" href="#">
                             <img src="images/appstore.svg" alt="appstore">
                         </a>
                     </div>
-                    <div>
+                    <div class="footer__button">
                         <a class="google-play" href="#">
                             <img src="images/googleplay.svg" alt="googleplay">
                         </a>
