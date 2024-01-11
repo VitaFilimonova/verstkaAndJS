@@ -5,9 +5,12 @@ let images = document.querySelectorAll(" .slider__slides img");
 // let slides = document.querySelector(".slider__slides");
 const container = document.querySelector(".slider__slides-container");
 const points = document.querySelectorAll(".point");
-
+console.log(images.length);
 let currentSlide = 1;
-const imageWidth = 800;
+
+const computedStyles = getComputedStyle(container);
+const imageWidth = parseFloat(computedStyles.width);
+console.log(imageWidth);
 const animationSpeed = 1000;
 const pause = 1000;
 const startAnimationButton = document.querySelector(".start-button");
@@ -21,9 +24,11 @@ let isAnimating = false;
 let isAnimationInProgress = false;
 
 window.onload = function () {
-  slides.style.marginLeft = "-800px";
+  slides.style.marginLeft = `-${imageWidth}px`;
   container.style.display = "block";
 };
+
+const num = images.length - 1;
 
 function startSlider(item) {
   interval = setInterval(function () {
@@ -51,10 +56,10 @@ function startSlider(item) {
           updatePoints();
           currentSlide++;
           console.log(currentSlide);
-          if (currentSlide === 6) {
+          if (currentSlide === num) {
             currentSlide = 1;
 
-            slides.style.marginLeft = -800 + "px";
+            slides.style.marginLeft = `-${imageWidth}px`;
             stopSlider();
             updatePoints();
             isAnimationInProgress = false;
@@ -99,7 +104,7 @@ function disableButtons(disable) {
   rightButton.disabled = disable;
 }
 
-let totalSlides = 5;
+let totalSlides = images.length - 2;
 function moveSlider(direction) {
   if (isAnimating) return;
 
@@ -111,7 +116,7 @@ function moveSlider(direction) {
     currentSlide--;
 
     if (currentSlide < 1) {
-      currentSlide = 5; // Assuming totalSlides is the total number of slides excluding the duplicate
+      currentSlide = totalSlides; // Assuming totalSlides is the total number of slides excluding the duplicate
       slides.style.marginLeft = -imageWidth * (totalSlides + 1) + "px"; // Move instantly to the duplicate slide
       marginLeft = parseInt(getComputedStyle(slides).marginLeft, 10);
     }
@@ -143,7 +148,7 @@ function animateMarginChange(startMargin, endMargin) {
     } else {
       slides.style.marginLeft = endMargin + "px";
       if (currentSlide === 1) {
-        slides.style.marginLeft = "-800px"; // Reset to start position
+        slides.style.marginLeft = `-${imageWidth}px`; // Reset to start position
       }
       isAnimating = false;
     }
