@@ -49,7 +49,7 @@ function startSlider(item) {
           if (currentSlide === 6) {
             currentSlide = 1;
 
-            slides.style.marginLeft = "0";
+            slides.style.marginLeft = -800 + "px";
             stopSlider();
             updatePoints();
             isAnimationInProgress = false;
@@ -92,7 +92,7 @@ function disableButtons(disable) {
   leftButton.disabled = disable;
   rightButton.disabled = disable;
 }
-console.log(allImagesLength);
+
 // const lastClone = images[allImagesLength - 1].cloneNode(true);
 // lastClone.id = "last-clone";
 // slides.prepend(lastClone);
@@ -158,41 +158,53 @@ console.log(allImagesLength);
 //     disableButtons(true);
 //   }
 // }
-
+let totalSlides = 5;
 function moveSlider(direction) {
   if (isAnimating) return;
 
   isAnimating = true;
-  let marginLeft = -imageWidth * currentSlide; // Current margin based on the current slide
+  let marginLeft = parseInt(getComputedStyle(slides).marginLeft, 10);
+  let targetMargin;
 
   if (direction === "left") {
     currentSlide--;
+    if (currentSlide < 1) {
+      currentSlide = totalSlides; // Assuming totalSlides is the total number of slides excluding the duplicate
+      slides.style.marginLeft = -imageWidth * (totalSlides + 1) + "px"; // Move instantly to the duplicate slide
+      marginLeft = parseInt(getComputedStyle(slides).marginLeft, 10);
+    }
+    targetMargin = marginLeft + imageWidth;
   } else {
     currentSlide++;
-  }
-
-  let targetMargin = -imageWidth * currentSlide;
-
-  function animate() {
-    let currentTime = Date.now() - animationStartTime;
-    if (currentTime < animationSpeed) {
-      let progress = currentTime / animationSpeed;
-      let currentMargin = marginLeft + (targetMargin - marginLeft) * progress;
-      slides.style.marginLeft = currentMargin + "px";
-      requestAnimationFrame(animate);
-    } else {
-      if (currentSlide < 1) {
-        currentSlide = 5;
-        slides.style.marginLeft = -imageWidth * currentSlide + "px";
-      }
-      isAnimating = false;
-      disableButtons(false);
+    targetMargin = marginLeft - imageWidth;
+    if (currentSlide >= totalSlides) {
+      currentSlide = 0; // Loop back to the start
     }
   }
   console.log(currentSlide);
+  animateMarginChange(marginLeft, targetMargin);
+}
+
+function animateMarginChange(startMargin, endMargin) {
   let animationStartTime = Date.now();
-  animate();
-  disableButtons(true);
+
+  function animate() {
+    let timeElapsed = Date.now() - animationStartTime;
+    let progress = timeElapsed / animationSpeed;
+    if (progress < 1) {
+      let currentMargin = startMargin + (endMargin - startMargin) * progress;
+      slides.style.marginLeft = currentMargin + "px";
+      requestAnimationFrame(animate);
+    } else {
+      slides.style.marginLeft = endMargin + "px";
+      if (currentSlide === 0) {
+        slides.style.marginLeft = "0px"; // Reset to start position
+      }
+      isAnimating = false;
+    }
+  }
+
+  requestAnimationFrame(animate);
 }
 
 rightButton.onclick = function () {
