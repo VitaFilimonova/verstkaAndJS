@@ -1,7 +1,7 @@
 const rightButton = document.querySelector(".slider__arrow--right");
 const leftButton = document.querySelector(".slider__arrow--left");
 const buttons = document.querySelectorAll(".slider__arrow");
-let images = document.querySelectorAll(" .slider__slides");
+let images = document.querySelectorAll(" .slider__slides img");
 // let slides = document.querySelector(".slider__slides");
 const container = document.querySelector(".slider__slides-container");
 const points = document.querySelectorAll(".point");
@@ -92,6 +92,10 @@ function disableButtons(disable) {
   leftButton.disabled = disable;
   rightButton.disabled = disable;
 }
+console.log(allImagesLength);
+// const lastClone = images[allImagesLength - 1].cloneNode(true);
+// lastClone.id = "last-clone";
+// slides.prepend(lastClone);
 
 // rightButton.onclick = function () {
 //   slides.style.marginLeft = -imageWidth + "px";
@@ -101,51 +105,94 @@ function disableButtons(disable) {
 //   slides.style.marginLeft = imageWidth + "px";
 // };
 
-function moveSlider(direction) {
-  if (!isAnimating) {
-    isAnimating = true;
-    let marginLeft = parseInt(getComputedStyle(slides).marginLeft, 10);
-    let targetMargin;
+// function moveSlider(direction) {
+//   if (!isAnimating) {
+//     isAnimating = true;
+//     let marginLeft = parseInt(getComputedStyle(slides).marginLeft, 10);
+//     let targetMargin;
+//
+//     if (direction === "left") {
+//       currentSlide--;
+//       if (currentSlide < 1) {
+//         currentSlide = 5;
+//         slides.style.marginLeft = -imageWidth * (currentSlide - 1) + "px";
+//         // slides.style.marginLeft = -3200 + "px";
+//         // marginLeft = parseInt(getComputedStyle(slides).marginLeft, 10);
+//       }
+//
+//       targetMargin = marginLeft + imageWidth;
+//     } else {
+//       currentSlide++;
+//       if (currentSlide > 5) {
+//         currentSlide = 1;
+//       }
+//       targetMargin = marginLeft - imageWidth;
+//     }
+//
+//     let animationStartTime = Date.now();
+//     console.log(currentSlide);
+//     function animate() {
+//       let currentTime = Date.now() - animationStartTime;
+//
+//       if (currentTime < animationSpeed) {
+//         let progress = currentTime / animationSpeed;
+//         let currentMargin = marginLeft + (targetMargin - marginLeft) * progress;
+//
+//         slides.style.marginLeft = currentMargin + "px";
+//         requestAnimationFrame(animate);
+//       } else {
+//         updatePoints();
+//         // if (currentSlide === 5) {
+//         //   slides.style.marginLeft = 3200 + "px";
+//         // } else {
+//         slides.style.marginLeft = -imageWidth * (currentSlide - 1) + "px";
+//         // }
+//
+//         isAnimating = false;
+//         disableButtons(false);
+//       }
+//     }
+//
+//     animate();
+//     isAnimating = true;
+//     disableButtons(true);
+//   }
+// }
 
-    if (direction === "left") {
-      currentSlide--;
+function moveSlider(direction) {
+  if (isAnimating) return;
+
+  isAnimating = true;
+  let marginLeft = -imageWidth * currentSlide; // Current margin based on the current slide
+
+  if (direction === "left") {
+    currentSlide--;
+  } else {
+    currentSlide++;
+  }
+
+  let targetMargin = -imageWidth * currentSlide;
+
+  function animate() {
+    let currentTime = Date.now() - animationStartTime;
+    if (currentTime < animationSpeed) {
+      let progress = currentTime / animationSpeed;
+      let currentMargin = marginLeft + (targetMargin - marginLeft) * progress;
+      slides.style.marginLeft = currentMargin + "px";
+      requestAnimationFrame(animate);
+    } else {
       if (currentSlide < 1) {
         currentSlide = 5;
+        slides.style.marginLeft = -imageWidth * currentSlide + "px";
       }
-      targetMargin = marginLeft + imageWidth;
-    } else {
-      currentSlide++;
-      if (currentSlide > 5) {
-        currentSlide = 1;
-      }
-      targetMargin = marginLeft - imageWidth;
+      isAnimating = false;
+      disableButtons(false);
     }
-
-    let animationStartTime = Date.now();
-
-    function animate() {
-      let currentTime = Date.now() - animationStartTime;
-
-      if (currentTime < animationSpeed) {
-        let progress = currentTime / animationSpeed;
-        let currentMargin = marginLeft + (targetMargin - marginLeft) * progress;
-
-        slides.style.marginLeft = currentMargin + "px";
-
-        requestAnimationFrame(animate);
-      } else {
-        updatePoints();
-        slides.style.marginLeft = -imageWidth * (currentSlide - 1) + "px";
-
-        isAnimating = false;
-        disableButtons(false);
-      }
-    }
-
-    animate();
-    isAnimating = true;
-    disableButtons(true);
   }
+  console.log(currentSlide);
+  let animationStartTime = Date.now();
+  animate();
+  disableButtons(true);
 }
 
 rightButton.onclick = function () {
@@ -156,8 +203,11 @@ leftButton.onclick = function () {
   moveSlider("left");
 };
 
+window.onload = function () {
+  slides.style.marginLeft = "-800px"; // Set to the first actual slide
+};
 // points.forEach((el, index) => {
 //     el.addEventListener('click', function () {
-//         slideTo(index);
+//       moveSlider(index);
 //     });
 // });
