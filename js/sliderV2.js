@@ -20,6 +20,16 @@ let interval;
 let isAnimating = false;
 let isAnimationInProgress = false;
 
+window.onload = function () {
+  slides.style.marginLeft = "-800px";
+  container.style.display = "block";
+  // slides.style.marginLeft = "-800px"; // Set to the first actual slide
+};
+
+// const lastClone = images[allImagesLength - 1].cloneNode(true);
+// lastClone.id = "last-clone";
+// slides.prepend(lastClone);
+
 function startSlider(item) {
   interval = setInterval(function () {
     // if (!stopAllAnimation) {
@@ -80,7 +90,7 @@ startAnimationButton.addEventListener("click", startSlider);
 //
 function updatePoints() {
   points.forEach((el, index) => {
-    if (index === currentSlide) {
+    if (index === currentSlide - 1) {
       el.classList.add("point--active");
     } else {
       el.classList.remove("point--active");
@@ -169,18 +179,22 @@ function moveSlider(direction) {
 
   if (direction === "left") {
     currentSlide--;
+
     if (currentSlide < 1) {
-      currentSlide = totalSlides; // Assuming totalSlides is the total number of slides excluding the duplicate
+      currentSlide = 5; // Assuming totalSlides is the total number of slides excluding the duplicate
       slides.style.marginLeft = -imageWidth * (totalSlides + 1) + "px"; // Move instantly to the duplicate slide
       marginLeft = parseInt(getComputedStyle(slides).marginLeft, 10);
     }
     targetMargin = marginLeft + imageWidth;
+    updatePoints();
   } else {
     currentSlide++;
     targetMargin = marginLeft - imageWidth;
-    if (currentSlide >= totalSlides) {
-      currentSlide = 0; // Loop back to the start
+
+    if (currentSlide > totalSlides) {
+      currentSlide = 1; // Loop back to the start
     }
+    updatePoints();
   }
   console.log(currentSlide);
   animateMarginChange(marginLeft, targetMargin);
@@ -198,8 +212,8 @@ function animateMarginChange(startMargin, endMargin) {
       requestAnimationFrame(animate);
     } else {
       slides.style.marginLeft = endMargin + "px";
-      if (currentSlide === 0) {
-        slides.style.marginLeft = "0px"; // Reset to start position
+      if (currentSlide === 1) {
+        slides.style.marginLeft = "-800px"; // Reset to start position
       }
       isAnimating = false;
     }
@@ -216,9 +230,6 @@ leftButton.onclick = function () {
   moveSlider("left");
 };
 
-window.onload = function () {
-  slides.style.marginLeft = "-800px"; // Set to the first actual slide
-};
 // points.forEach((el, index) => {
 //     el.addEventListener('click', function () {
 //       moveSlider(index);

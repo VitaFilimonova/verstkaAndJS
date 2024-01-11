@@ -212,7 +212,7 @@ body {
     width: 800px; /* Adjust to your image width */
     height: 600px; /* Adjust to your image height */
     justify-items:  center;
-
+display: none;
     /*width: 100%;*/
 }
 
