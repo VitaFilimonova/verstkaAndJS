@@ -158,6 +158,7 @@ function disableButtons(disable) {
 //     disableButtons(true);
 //   }
 // }
+
 let totalSlides = 5;
 function moveSlider(direction) {
   if (isAnimating) return;
