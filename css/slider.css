@@ -171,6 +171,28 @@
 body {
     background-color: rgba(161,255,91,0.34);
 }
+
+
+/*.slider__slides {*/
+/*    animation: slideAnimation 2s linear infinite; !* Анимация слайдов *!*/
+/*}*/
+
+/*@keyframes slideAnimation {*/
+/*    0%, 100% {*/
+/*        transform: translateX(0);*/
+/*    }*/
+/*    25% {*/
+/*        transform: translateX(-800px); !* Смещение на 800px влево *!*/
+/*    }*/
+/*    28%, 96% {*/
+/*        transform: translateX(-800px); !* Задержка на новом слайде в течение 3 секунд *!*/
+/*    }*/
+/*    100% {*/
+/*        transform: translateX(0); !* Возврат к первому слайду *!*/
+/*    }*/
+/*}*/
+
+
 .slider {
     position: relative;
     width: 100%;
@@ -178,6 +200,7 @@ body {
     display: flex;
     align-items: center; /* Center slider vertically */
     justify-content: center; /* Center slider horizontally */
+    flex-direction: column;
 
     /*margin: 0 auto;*/
 
@@ -204,7 +227,7 @@ width: max-content;
 transform: none;
     /*gap: 40px;*/
     /*width: 100%;*/
-    transition: transform 0.25s ease-in-out; /* Smooth transition for slide change */
+    /*transition: transform 0.25s ease-in-out; !* Smooth transition for slide change *!*/
 }
 
 .slider__slides img {
@@ -213,6 +236,7 @@ transform: none;
     height: 600px; /* Adjust to your image height */
     border-radius: 15px;
     object-fit: cover;
+    background-color: #ff6c2d;
 }
 
 
@@ -280,4 +304,18 @@ transform: none;
 /* Flip the right arrow */
 .slider__arrow--right .slider__arrow-image {
     transform: rotate(180deg);
+}
+
+.slider__start-button {
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.start-button {
+    font-family: Corbel;
+    color: white;
+    background-color: cornflowerblue;
+    align-items: center;
+    padding: 16px 30px;
+    border-radius: 16px;
 }

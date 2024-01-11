@@ -1,10 +1,10 @@
-const rightButton = document.querySelector(".slider__arrow--right")
-const leftButton = document.querySelector(".slider__arrow--left")
-const buttons = document.querySelectorAll(".slider__arrow")
-let images = document.querySelectorAll(" .slider__slides img")
-let slides = document.querySelector(".slider__slides")
-const container = document.querySelector(".slider__slides-container")
-const points = document.querySelectorAll('.point')
+const rightButton = document.querySelector(".slider__arrow--right");
+const leftButton = document.querySelector(".slider__arrow--left");
+const buttons = document.querySelectorAll(".slider__arrow");
+let images = document.querySelectorAll(" .slider__slides img");
+let slides = document.querySelector(".slider__slides");
+const container = document.querySelector(".slider__slides-container");
+const points = document.querySelectorAll(".point");
 // let imageIndex = 1;
 // let intervalId;
 //
@@ -35,72 +35,69 @@ const points = document.querySelectorAll('.point')
 // console.log(images)
 //
 let active = 1;
-let lengthItems = images.length ;
-console.log(lengthItems)
+let lengthItems = images.length;
+console.log(lengthItems);
 
 const firstClone = images[0].cloneNode(true);
-const lastClone = images[lengthItems-1].cloneNode(true);
+const lastClone = images[lengthItems - 1].cloneNode(true);
 
-firstClone.id = 'first-clone';
-lastClone.id = 'last-clone';
+firstClone.id = "first-clone";
+lastClone.id = "last-clone";
 
 slides.append(firstClone);
 slides.prepend(lastClone);
 
-slides.style.transform = `translateX(${-800*(active)}px`;
+slides.style.transform = `translateX(${-800 * active}px`;
 
 rightButton.onclick = function () {
-    console.log(active)
-    if (active + 1 > lengthItems) {
-        active = 0;
-    } else {
-        active = active + 1
-    }
-    // reloadSlider();
-}
+  console.log(active);
+  if (active + 1 > lengthItems) {
+    active = 0;
+  } else {
+    active = active + 1;
+  }
+  // reloadSlider();
+};
 leftButton.onclick = function () {
-    console.log(active)
-    if (active < 0) {
-        active = lengthItems;
-    } else {
-        active = active - 1
-    }
-    // if (active === 0 ) {
-    //     active = lengthItems
-    // }
-    // reloadSlider();
-}
+  console.log(active);
+  if (active < 0) {
+    active = lengthItems;
+  } else {
+    active = active - 1;
+  }
+  // if (active === 0 ) {
+  //     active = lengthItems
+  // }
+  // reloadSlider();
+};
 // let refreshSlider = setInterval(() => {
 //     rightButton.click()
 // }, 5000)
-slides.addEventListener('transitionend', function(event) {
-    console.log(event.propertyName)
-    if (event.propertyName === 'transform') {
-        console.log(active)
-        images = document.querySelectorAll(".slider__slides img")
-        // Обработка завершения анимации свойства transform
-        if (images[active].id === firstClone.id) {
-
-            active = 1;
-            slides.style.transform = `translateX(${-active * 800}px`;
-        }else if (images[active].id === 'last-clone') {
-            slides.style.transition = "none";
-            active = lengthItems;
-            slides.style.transform = `translateX(${-800 * (active)}px`;
-        }
-   };
+slides.addEventListener("transitionend", function (event) {
+  console.log(event.propertyName);
+  if (event.propertyName === "transform") {
+    console.log(active);
+    images = document.querySelectorAll(".slider__slides img");
+    // Обработка завершения анимации свойства transform
+    if (images[active].id === firstClone.id) {
+      active = 1;
+      slides.style.transform = `translateX(${-active * 800}px`;
+    } else if (images[active].id === "last-clone") {
+      // slides.style.transition = "none";
+      active = lengthItems;
+      slides.style.transform = `translateX(${-800 * active}px`;
+    }
+  }
 });
 
-const startSlide = ()  => {
-
-    setInterval(() => {
-
-        active++;
-        slides.style.transform = `translateX(${-800*(active)}px`;
-    },2000)
-    console.log(active)
-}
-startSlide()
+const startSlide = () => {
+  setInterval(() => {
+    active++;
+    slides.style.transform = `translateX(${-800 * active}px`;
+  }, 2000);
+  console.log(active);
+};
+startSlide();
 
 // function reloadSlider() {
 //     let checkLeft = images[active].offsetLeft;
@@ -118,12 +115,11 @@ startSlide()
 // }
 
 points.forEach((el, index) => {
-    el.addEventListener('click', function () {
-        active = index;
-        // reloadSlider()
-    })
-})
-
+  el.addEventListener("click", function () {
+    active = index;
+    // reloadSlider()
+  });
+});
 
 // let active = 0;
 // let lengthItems = images.length - 1;
@@ -186,7 +182,6 @@ points.forEach((el, index) => {
 //
 // // Автоматическое переключение слайдов
 // let refreshSlider = setInterval(() => slideTo(active === lengthItems ? 0 : active + 1), 5000);
-
 
 // const imageContainer = document.querySelector('.slides');
 //
