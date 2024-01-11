@@ -306,13 +306,18 @@ transform: none;
     transform: rotate(180deg);
 }
 
+.slider__arrow:disabled {
+    pointer-events: none;
+    color: grey;
+    background-color: #EC1211;
+}
+
 .slider__start-button {
-    margin-top: 50px;
-    margin-bottom: 50px;
+    margin-top: 30px;
+    margin-bottom: 100px;
 }
 
 .start-button {
-    font-family: Corbel;
     color: white;
     background-color: cornflowerblue;
     align-items: center;

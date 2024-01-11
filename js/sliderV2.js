@@ -12,15 +12,17 @@ const animationSpeed = 1000;
 const pause = 1000;
 const startAnimationButton = document.querySelector(".start-button");
 const slides = document.querySelector(".slider__slides");
-
+const allImagesLength =
+  document.querySelectorAll(".slider__slides img").length - 1;
 let start = Date.now(); // запомнить время начала
 
 let interval;
 let isAnimating = false;
-let stopAllAnimation = false;
+let isAnimationInProgress = false;
 
-function startSlider() {
+function startSlider(item) {
   interval = setInterval(function () {
+    // if (!stopAllAnimation) {
     if (!isAnimating) {
       isAnimating = true;
 
@@ -33,31 +35,38 @@ function startSlider() {
         let currentTime = Date.now() - animationStartTime;
 
         if (currentTime < animationSpeed) {
-          let easedProgress = (currentTime / animationSpeed) ** 2; // Quadratic easing
+          let easedProgress = currentTime / animationSpeed; // Quadratic easing
+          let currentMargin = marginLeft - easedProgress * imageWidth;
 
-          slides.style.marginLeft =
-            marginLeft - easedProgress * imageWidth + "px";
+          slides.style.marginLeft = currentMargin + "px";
+          isAnimationInProgress = false;
 
           requestAnimationFrame(animate);
         } else {
           updatePoints();
           currentSlide++;
-
+          console.log(currentSlide);
           if (currentSlide === 6) {
-            currentSlide = 0;
+            currentSlide = 1;
 
             slides.style.marginLeft = "0";
             stopSlider();
             updatePoints();
-            stopAllAnimation = true;
+            isAnimationInProgress = false;
+            disableButtons(false);
+          } else {
+            marginLeft = newMargin;
+            slides.style.marginLeft = marginLeft + "px";
+            isAnimating = false;
           }
-
           isAnimating = false;
         }
       }
 
       animate();
-      console.log(currentSlide);
+      isAnimationInProgress = true;
+      disableButtons(true);
+      // }
     }
   }, pause);
 }
@@ -78,14 +87,73 @@ function updatePoints() {
     }
   });
 }
-console.log(points[0]);
+
+function disableButtons(disable) {
+  leftButton.disabled = disable;
+  rightButton.disabled = disable;
+}
+
+// rightButton.onclick = function () {
+//   slides.style.marginLeft = -imageWidth + "px";
+// };
+//
+// leftButton.onclick = function () {
+//   slides.style.marginLeft = imageWidth + "px";
+// };
+
+function moveSlider(direction) {
+  if (!isAnimating) {
+    isAnimating = true;
+    let marginLeft = parseInt(getComputedStyle(slides).marginLeft, 10);
+    let targetMargin;
+
+    if (direction === "left") {
+      currentSlide--;
+      if (currentSlide < 1) {
+        currentSlide = 5;
+      }
+      targetMargin = marginLeft + imageWidth;
+    } else {
+      currentSlide++;
+      if (currentSlide > 5) {
+        currentSlide = 1;
+      }
+      targetMargin = marginLeft - imageWidth;
+    }
+
+    let animationStartTime = Date.now();
+
+    function animate() {
+      let currentTime = Date.now() - animationStartTime;
+
+      if (currentTime < animationSpeed) {
+        let progress = currentTime / animationSpeed;
+        let currentMargin = marginLeft + (targetMargin - marginLeft) * progress;
+
+        slides.style.marginLeft = currentMargin + "px";
+
+        requestAnimationFrame(animate);
+      } else {
+        updatePoints();
+        slides.style.marginLeft = -imageWidth * (currentSlide - 1) + "px";
+
+        isAnimating = false;
+        disableButtons(false);
+      }
+    }
+
+    animate();
+    isAnimating = true;
+    disableButtons(true);
+  }
+}
 
 rightButton.onclick = function () {
-  slideTo(active === lengthItems ? 0 : active + 1);
+  moveSlider("right");
 };
 
 leftButton.onclick = function () {
-  slideTo(active === 0 ? lengthItems : active - 1);
+  moveSlider("left");
 };
 
 // points.forEach((el, index) => {
