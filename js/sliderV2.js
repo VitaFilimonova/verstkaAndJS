@@ -23,12 +23,7 @@ let isAnimationInProgress = false;
 window.onload = function () {
   slides.style.marginLeft = "-800px";
   container.style.display = "block";
-  // slides.style.marginLeft = "-800px"; // Set to the first actual slide
 };
-
-// const lastClone = images[allImagesLength - 1].cloneNode(true);
-// lastClone.id = "last-clone";
-// slides.prepend(lastClone);
 
 function startSlider(item) {
   interval = setInterval(function () {
@@ -68,6 +63,7 @@ function startSlider(item) {
             marginLeft = newMargin;
             slides.style.marginLeft = marginLeft + "px";
             isAnimating = false;
+            updatePoints();
           }
           isAnimating = false;
         }
@@ -102,72 +98,6 @@ function disableButtons(disable) {
   leftButton.disabled = disable;
   rightButton.disabled = disable;
 }
-
-// const lastClone = images[allImagesLength - 1].cloneNode(true);
-// lastClone.id = "last-clone";
-// slides.prepend(lastClone);
-
-// rightButton.onclick = function () {
-//   slides.style.marginLeft = -imageWidth + "px";
-// };
-//
-// leftButton.onclick = function () {
-//   slides.style.marginLeft = imageWidth + "px";
-// };
-
-// function moveSlider(direction) {
-//   if (!isAnimating) {
-//     isAnimating = true;
-//     let marginLeft = parseInt(getComputedStyle(slides).marginLeft, 10);
-//     let targetMargin;
-//
-//     if (direction === "left") {
-//       currentSlide--;
-//       if (currentSlide < 1) {
-//         currentSlide = 5;
-//         slides.style.marginLeft = -imageWidth * (currentSlide - 1) + "px";
-//         // slides.style.marginLeft = -3200 + "px";
-//         // marginLeft = parseInt(getComputedStyle(slides).marginLeft, 10);
-//       }
-//
-//       targetMargin = marginLeft + imageWidth;
-//     } else {
-//       currentSlide++;
-//       if (currentSlide > 5) {
-//         currentSlide = 1;
-//       }
-//       targetMargin = marginLeft - imageWidth;
-//     }
-//
-//     let animationStartTime = Date.now();
-//     console.log(currentSlide);
-//     function animate() {
-//       let currentTime = Date.now() - animationStartTime;
-//
-//       if (currentTime < animationSpeed) {
-//         let progress = currentTime / animationSpeed;
-//         let currentMargin = marginLeft + (targetMargin - marginLeft) * progress;
-//
-//         slides.style.marginLeft = currentMargin + "px";
-//         requestAnimationFrame(animate);
-//       } else {
-//         updatePoints();
-//         // if (currentSlide === 5) {
-//         //   slides.style.marginLeft = 3200 + "px";
-//         // } else {
-//         slides.style.marginLeft = -imageWidth * (currentSlide - 1) + "px";
-//         // }
-//
-//         isAnimating = false;
-//         disableButtons(false);
-//       }
-//     }
-//
-//     animate();
-//     isAnimating = true;
-//     disableButtons(true);
-//   }
-// }
 
 let totalSlides = 5;
 function moveSlider(direction) {
