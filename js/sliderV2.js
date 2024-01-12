@@ -165,8 +165,8 @@ leftButton.onclick = function () {
   moveSlider("left");
 };
 
-// points.forEach((el, index) => {
-//     el.addEventListener('click', function () {
-//       moveSlider(index);
-//     });
-// });
+points.forEach((el, index) => {
+  el.addEventListener("click", function () {
+    moveSlider(index);
+  });
+});
