@@ -105,6 +105,7 @@ function disableButtons(disable) {
 }
 
 let totalSlides = images.length - 2;
+
 function moveSlider(direction) {
   if (isAnimating) return;
 
@@ -122,7 +123,7 @@ function moveSlider(direction) {
     }
     targetMargin = marginLeft + imageWidth;
     updatePoints();
-  } else {
+  } else if (direction === "right") {
     currentSlide++;
     targetMargin = marginLeft - imageWidth;
 
@@ -167,6 +168,19 @@ leftButton.onclick = function () {
 
 points.forEach((el, index) => {
   el.addEventListener("click", function () {
-    moveSlider(index);
+    moveSliderPoint(index);
   });
 });
+
+function moveSliderPoint(index) {
+  if (isAnimating) return;
+
+  isAnimating = true;
+  let startMargin = parseInt(getComputedStyle(slides).marginLeft, 10);
+  let targetSlideIndex = index + 1; // Adjusting for the duplicate slide at the start
+  let endMargin = -imageWidth * targetSlideIndex;
+
+  currentSlide = index + 1; // Update the current slide index
+  animateMarginChange(startMargin, endMargin);
+  updatePoints(); // Update the points to reflect the new current slide
+}

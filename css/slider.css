@@ -84,6 +84,15 @@ body {
     background-color: var(--global-green);
 }
 
+.point:hover {
+    background-color: var(--global-grey);
+    cursor: pointer;
+}
+.point--active:hover {
+    background-color: var(--global-green);
+    pointer-events: none;
+}
+
 .slider__arrow {
     position: absolute;
     top: 45%;
