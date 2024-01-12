@@ -92,6 +92,10 @@ body {
     pointer-events: none;
 }
 
+.disable {
+    pointer-events: none;
+}
+
 .slider__arrow {
     position: absolute;
     top: 45%;
@@ -142,13 +146,31 @@ body {
 }
 
 .start-button {
-    color: white;
+    color: var(--global-white);
     font-family: var(--global-font);
     background-color: var(--global-green);
     align-items: center;
     padding: 16px 30px;
     border-radius: 12px;
     text-transform: uppercase;
+    transition: all 0.25s ease-in-out;
+}
+
+.start-button:hover {
+    background-color: var(--global-white);
+    color: var(--global-green);
+    /*transition: all 0.25s ease-in-out;*/
+}
+
+.start-button:active {
+    background: var(--btn-hover-color);
+    border-color: var(--btn-hover-border-color);
+}
+.start-button:disabled {
+    pointer-events: none;
+    background: var(--btn-hover-color);
+    border-color: var(--btn-hover-border-color);
+    transition: all 0.15s ease-in-out;
 }
 
 @media (max-width: 1100px) {

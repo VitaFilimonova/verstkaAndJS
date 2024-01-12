@@ -1,41 +1,40 @@
 const rightButton = document.querySelector(".slider__arrow--right");
 const leftButton = document.querySelector(".slider__arrow--left");
+const startAnimationButton = document.querySelector(".start-button");
 
 const container = document.querySelector(".slider__slides-container");
 const slides = document.querySelector(".slider__slides");
 let images = document.querySelectorAll(" .slider__slides img");
 const points = document.querySelectorAll(".slider__point");
 
-const computedStyles = getComputedStyle(container);
-const imageWidth = parseFloat(computedStyles.width);
+const imageWidth = parseFloat(getComputedStyle(container).width);
 
-let currentSlide = 1;
+const lastSlide = images.length - 1;
+const totalSlides = images.length - 2;
+
 const animationSpeed = 1000;
 const pause = 1000;
-const startAnimationButton = document.querySelector(".start-button");
 
 let interval;
+let currentSlide = 1;
 let isAnimating = false;
-let isAnimationInProgress = false;
-let totalSlides = images.length - 2;
-
-const num = images.length - 1;
 
 //  Before use slider set "marginLeft" and hide this moment from users via style.display = "block";
 window.onload = function () {
   slides.style.marginLeft = `-${imageWidth}px`;
   container.style.display = "block";
 };
-
+//  The button that start slider-show
 startAnimationButton.addEventListener("click", startSlider);
 
 function startSlider() {
+  disableButtons(true); // Block all actions during animation
+
   interval = setInterval(function () {
-    // if (!stopAllAnimation) {
     if (!isAnimating) {
       isAnimating = true;
 
-      let marginLeft = parseInt(getComputedStyle(slides).marginLeft, 10); // Берем из стилей актуальное значение marginLeft
+      let marginLeft = parseInt(getComputedStyle(slides).marginLeft, 10); // Actual value marginLeft from CSS
       let newMargin = marginLeft - imageWidth;
 
       let animationStartTime = Date.now();
@@ -44,37 +43,30 @@ function startSlider() {
         let currentTime = Date.now() - animationStartTime;
 
         if (currentTime < animationSpeed) {
-          let easedProgress = currentTime / animationSpeed;
-          let currentMargin = marginLeft - easedProgress * imageWidth;
+          let progress = currentTime / animationSpeed;
+          let currentMargin = marginLeft - progress * imageWidth;
 
           slides.style.marginLeft = currentMargin + "px";
-
           requestAnimationFrame(animate);
         } else {
-          updatePoints();
           currentSlide++;
-          console.log(currentSlide);
-          if (currentSlide === num) {
+
+          if (currentSlide === lastSlide) {
             currentSlide = 1;
             slides.style.marginLeft = `-${imageWidth}px`;
-            stopSlider();
-            updatePoints();
-            isAnimationInProgress = false;
-            disableButtons(false);
+
+            stopSlider(); // Clear timer
+            disableButtons(false); // Unlock all actions after animation
           } else {
             marginLeft = newMargin;
             slides.style.marginLeft = marginLeft + "px";
-            isAnimating = false;
-            updatePoints();
           }
           isAnimating = false;
         }
+        updatePoints();
       }
 
       animate();
-      isAnimationInProgress = true;
-      disableButtons(true);
-      // }
     }
   }, pause);
 }
@@ -85,21 +77,20 @@ function stopSlider() {
 
 function moveSlider(direction) {
   if (isAnimating) return;
-
   isAnimating = true;
-  let marginLeft = parseInt(getComputedStyle(slides).marginLeft, 10);
+
+  let marginLeft = parseInt(getComputedStyle(slides).marginLeft, 10); // Actual value marginLeft from CSS
   let targetMargin;
 
   if (direction === "left") {
     currentSlide--;
 
     if (currentSlide < 1) {
-      currentSlide = totalSlides; // Assuming totalSlides is the total number of slides excluding the duplicate
+      currentSlide = totalSlides;
       slides.style.marginLeft = -imageWidth * (totalSlides + 1) + "px"; // Move instantly to the duplicate slide
       marginLeft = parseInt(getComputedStyle(slides).marginLeft, 10);
     }
     targetMargin = marginLeft + imageWidth;
-    updatePoints();
   } else if (direction === "right") {
     currentSlide++;
     targetMargin = marginLeft - imageWidth;
@@ -107,9 +98,8 @@ function moveSlider(direction) {
     if (currentSlide > totalSlides) {
       currentSlide = 1; // Loop back to the start
     }
-    updatePoints();
   }
-  console.log(currentSlide);
+  updatePoints();
   animateMarginChange(marginLeft, targetMargin);
 }
 
@@ -117,8 +107,9 @@ function animateMarginChange(startMargin, endMargin) {
   let animationStartTime = Date.now();
 
   function animate() {
-    let timeElapsed = Date.now() - animationStartTime;
-    let progress = timeElapsed / animationSpeed;
+    let currentTime = Date.now() - animationStartTime;
+    let progress = currentTime / animationSpeed;
+
     if (progress < 1) {
       let currentMargin = startMargin + (endMargin - startMargin) * progress;
       slides.style.marginLeft = currentMargin + "px";
@@ -138,11 +129,9 @@ function animateMarginChange(startMargin, endMargin) {
 // Update active point
 function updatePoints() {
   points.forEach((elem, index) => {
-    if (index === currentSlide - 1) {
-      elem.classList.add("slider__point--active");
-    } else {
-      elem.classList.remove("slider__point--active");
-    }
+    index === currentSlide - 1
+      ? elem.classList.add("slider__point--active")
+      : elem.classList.remove("slider__point--active");
   });
 }
 
@@ -150,6 +139,10 @@ function updatePoints() {
 function disableButtons(disable) {
   leftButton.disabled = disable;
   rightButton.disabled = disable;
+  startAnimationButton.disabled = disable;
+  points.forEach((el) => {
+    disable ? el.classList.add("disable") : el.classList.remove("disable");
+  });
 }
 
 rightButton.onclick = function () {
@@ -161,20 +154,17 @@ leftButton.onclick = function () {
 };
 
 points.forEach((el, index) => {
-  el.addEventListener("click", function () {
-    moveSliderPoint(index);
-  });
+  el.addEventListener("click", () => moveSliderPoint(index));
 });
 
 function moveSliderPoint(index) {
   if (isAnimating) return;
-
   isAnimating = true;
-  let startMargin = parseInt(getComputedStyle(slides).marginLeft, 10);
-  let targetSlideIndex = index + 1; // Adjusting for the duplicate slide at the start
-  let endMargin = -imageWidth * targetSlideIndex;
 
-  currentSlide = index + 1; // Update the current slide index
+  let startMargin = parseInt(getComputedStyle(slides).marginLeft, 10);
+  currentSlide = index + 1;
+  let endMargin = -imageWidth * currentSlide;
+
   animateMarginChange(startMargin, endMargin);
-  updatePoints(); // Update the points to reflect the new current slide
+  updatePoints();
 }
