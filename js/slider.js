@@ -1,208 +1,170 @@
 const rightButton = document.querySelector(".slider__arrow--right");
 const leftButton = document.querySelector(".slider__arrow--left");
-const buttons = document.querySelectorAll(".slider__arrow");
-let images = document.querySelectorAll(" .slider__slides img");
-let slides = document.querySelector(".slider__slides");
+const startAnimationButton = document.querySelector(".start-button");
+
 const container = document.querySelector(".slider__slides-container");
-const points = document.querySelectorAll(".point");
-// let imageIndex = 1;
-// let intervalId;
-//
-//
-// const autoSlide = () => {
-//     intervalId = setInterval(()=> slideImage(++imageIndex),2000)
-// }
-// autoSlide()
-// const slideImage = () => {
-//
-//     imageIndex = imageIndex ===images.length ? 0 : imageIndex < 0 ? images.length -1 : imageIndex
-//
-//     slides.style.transform = `translate(-${imageIndex * 100}%)`
-// }
-//
-// const updateClick  = (e) => {
-//     clearInterval(intervalId)
-//     imageIndex += e.target.id === "next" ? 1 : -1
-//     console.log()
-//     slideImage(imageIndex)
-//     autoSlide()
-// }
-// buttons.forEach((button) => button.addEventListener("click", updateClick))
-//
-// container.addEventListener("mouseover", () => clearInterval(intervalId))
-// container.addEventListener("mouseleave", autoSlide)
+const slides = document.querySelector(".slider__slides");
+let images = document.querySelectorAll(" .slider__slides img");
+const points = document.querySelectorAll(".slider__point");
 
-// console.log(images)
-//
-let active = 1;
-let lengthItems = images.length;
-console.log(lengthItems);
+const imageWidth = parseFloat(getComputedStyle(container).width);
 
-const firstClone = images[0].cloneNode(true);
-const lastClone = images[lengthItems - 1].cloneNode(true);
+const lastSlide = images.length - 1;
+const totalSlides = images.length - 2;
 
-firstClone.id = "first-clone";
-lastClone.id = "last-clone";
+const animationSpeed = 1000;
+const pause = 1000;
 
-slides.append(firstClone);
-slides.prepend(lastClone);
+let interval;
+let currentSlide = 1;
+let isAnimating = false;
 
-slides.style.transform = `translateX(${-800 * active}px`;
-
-rightButton.onclick = function () {
-  console.log(active);
-  if (active + 1 > lengthItems) {
-    active = 0;
-  } else {
-    active = active + 1;
-  }
-  // reloadSlider();
+//  Before use slider set "marginLeft" and hide this moment from users via style.display = "block";
+window.onload = function () {
+  slides.style.marginLeft = `-${imageWidth}px`;
+  container.style.display = "block";
 };
-leftButton.onclick = function () {
-  console.log(active);
-  if (active < 0) {
-    active = lengthItems;
-  } else {
-    active = active - 1;
-  }
-  // if (active === 0 ) {
-  //     active = lengthItems
-  // }
-  // reloadSlider();
-};
-// let refreshSlider = setInterval(() => {
-//     rightButton.click()
-// }, 5000)
-slides.addEventListener("transitionend", function (event) {
-  console.log(event.propertyName);
-  if (event.propertyName === "transform") {
-    console.log(active);
-    images = document.querySelectorAll(".slider__slides img");
-    // Обработка завершения анимации свойства transform
-    if (images[active].id === firstClone.id) {
-      active = 1;
-      slides.style.transform = `translateX(${-active * 800}px`;
-    } else if (images[active].id === "last-clone") {
-      // slides.style.transition = "none";
-      active = lengthItems;
-      slides.style.transform = `translateX(${-800 * active}px`;
+//  The button that start slider-show
+startAnimationButton.addEventListener("click", startSlider);
+
+function startSlider() {
+  disableButtons(true); // Block all actions during animation
+
+  interval = setInterval(function () {
+    if (!isAnimating) {
+      isAnimating = true;
+
+      let marginLeft = parseInt(getComputedStyle(slides).marginLeft, 10); // Actual value marginLeft from CSS
+      let newMargin = marginLeft - imageWidth;
+
+      let animationStartTime = Date.now();
+
+      function animate() {
+        let currentTime = Date.now() - animationStartTime;
+
+        if (currentTime < animationSpeed) {
+          let progress = currentTime / animationSpeed;
+          let currentMargin = marginLeft - progress * imageWidth;
+
+          slides.style.marginLeft = currentMargin + "px";
+          requestAnimationFrame(animate);
+        } else {
+          currentSlide++;
+
+          if (currentSlide === lastSlide) {
+            currentSlide = 1;
+            slides.style.marginLeft = `-${imageWidth}px`;
+
+            stopSlider(); // Clear timer
+            disableButtons(false); // Unlock all actions after animation
+          } else {
+            marginLeft = newMargin;
+            slides.style.marginLeft = marginLeft + "px";
+          }
+          isAnimating = false;
+        }
+        updatePoints();
+      }
+
+      animate();
+    }
+  }, pause);
+}
+
+function stopSlider() {
+  clearInterval(interval);
+}
+
+function moveSlider(direction) {
+  if (isAnimating) return;
+  isAnimating = true;
+
+  let marginLeft = parseInt(getComputedStyle(slides).marginLeft, 10); // Actual value marginLeft from CSS
+  let targetMargin;
+
+  if (direction === "left") {
+    currentSlide--;
+
+    if (currentSlide < 1) {
+      currentSlide = totalSlides;
+      slides.style.marginLeft = -imageWidth * (totalSlides + 1) + "px"; // Move instantly to the duplicate slide
+      marginLeft = parseInt(getComputedStyle(slides).marginLeft, 10);
+    }
+    targetMargin = marginLeft + imageWidth;
+  } else if (direction === "right") {
+    currentSlide++;
+    targetMargin = marginLeft - imageWidth;
+
+    if (currentSlide > totalSlides) {
+      currentSlide = 1; // Loop back to the start
     }
   }
-});
+  updatePoints();
+  animateMarginChange(marginLeft, targetMargin);
+}
 
-const startSlide = () => {
-  setInterval(() => {
-    active++;
-    slides.style.transform = `translateX(${-800 * active}px`;
-  }, 2000);
-  console.log(active);
+function animateMarginChange(startMargin, endMargin) {
+  let animationStartTime = Date.now();
+
+  function animate() {
+    let currentTime = Date.now() - animationStartTime;
+    let progress = currentTime / animationSpeed;
+
+    if (progress < 1) {
+      let currentMargin = startMargin + (endMargin - startMargin) * progress;
+      slides.style.marginLeft = currentMargin + "px";
+      requestAnimationFrame(animate);
+    } else {
+      slides.style.marginLeft = endMargin + "px";
+      if (currentSlide === 1) {
+        slides.style.marginLeft = `-${imageWidth}px`; // Reset to start position
+      }
+      isAnimating = false;
+    }
+  }
+
+  requestAnimationFrame(animate);
+}
+
+// Update active point
+function updatePoints() {
+  points.forEach((elem, index) => {
+    index === currentSlide - 1
+      ? elem.classList.add("slider__point--active")
+      : elem.classList.remove("slider__point--active");
+  });
+}
+
+// Disable buttons and points click
+function disableButtons(disable) {
+  leftButton.disabled = disable;
+  rightButton.disabled = disable;
+  startAnimationButton.disabled = disable;
+  points.forEach((el) => {
+    disable ? el.classList.add("disable") : el.classList.remove("disable");
+  });
+}
+
+rightButton.onclick = function () {
+  moveSlider("right");
 };
-startSlide();
 
-// function reloadSlider() {
-//     let checkLeft = images[active].offsetLeft;
-//     // console.log(checkLeft)
-//     // slides.style.left = -checkLeft + 'px';
-//     slides.style.transform = `translate(${-active * 800}px)`
-//
-//     let lastActiveDot = document.querySelector('.point--active');
-//     lastActiveDot.classList.remove('point--active');
-//     points[active].classList.add('point--active');
-//     clearInterval(refreshSlider)
-//     refreshSlider = setInterval(() => {
-//         rightButton.click()
-//     }, 3000)
-// }
+leftButton.onclick = function () {
+  moveSlider("left");
+};
 
 points.forEach((el, index) => {
-  el.addEventListener("click", function () {
-    active = index;
-    // reloadSlider()
-  });
+  el.addEventListener("click", () => moveSliderPoint(index));
 });
 
-// let active = 0;
-// let lengthItems = images.length - 1;
-// let animationFrameId;
-// let isAnimating = false;
-//
-// function slideTo(index) {
-//     if (isAnimating || index === active) return;
-//     isAnimating = true;
-//     const offset = -images[0].offsetWidth * index;
-//     const start = parseFloat(getComputedStyle(slides).left);
-//     const duration = 500; // Продолжительность анимации (миллисекунды)
-//
-//     function animateSlide(timestamp) {
-//         if (!startTime) {
-//             startTime = timestamp;
-//         }
-//
-//         const progress = timestamp - startTime;
-//         slides.style.left = `${start + (offset - start) * (progress / duration)}px`;
-//
-//         if (progress < duration) {
-//             animationFrameId = requestAnimationFrame(animateSlide);
-//         } else {
-//             active = index;
-//             slides.style.left = `${-images[0].offsetWidth * active}px`;
-//             isAnimating = false;
-//             cancelAnimationFrame(animationFrameId);
-//             updatePoints();
-//         }
-//     }
-//
-//     let startTime = null;
-//     animationFrameId = requestAnimationFrame(animateSlide);
-// }
-//
-// function updatePoints() {
-//     points.forEach((el, index) => {
-//         if (index === active) {
-//             el.classList.add('point--active');
-//         } else {
-//             el.classList.remove('point--active');
-//         }
-//     });
-// }
-//
-// rightButton.onclick = function () {
-//     slideTo(active === lengthItems ? 0 : active + 1);
-// }
-//
-// leftButton.onclick = function () {
-//     slideTo(active === 0 ? lengthItems : active - 1);
-// }
-//
-// points.forEach((el, index) => {
-//     el.addEventListener('click', function () {
-//         slideTo(index);
-//     });
-// });
-//
-// // Автоматическое переключение слайдов
-// let refreshSlider = setInterval(() => slideTo(active === lengthItems ? 0 : active + 1), 5000);
+function moveSliderPoint(index) {
+  if (isAnimating) return;
+  isAnimating = true;
 
-// const imageContainer = document.querySelector('.slides');
-//
-// // Создайте массив с путями к изображениям
-// const imageSources = [
-//     './../image-slider/image1.jpg',
-//     'image2.jpg',
-//     'image3.jpg',
-//     'image4.jpg',
-//     'image5.jpg',
-//     'image6.jpg',
-//     'image7.jpg',
-//     'image8.jpg',
-//     'image9.jpg',
-//     'image10.jpg'
-// ];
-//
-// // Создайте и добавьте элементы <img> в контейнер
-// imageSources.forEach((src, index) => {
-//     const img = document.createElement('img');
-//     img.src = src;
-//     img.alt = `image ${index + 1}`;
-//     imageContainer.appendChild(img);
-// });
+  let startMargin = parseInt(getComputedStyle(slides).marginLeft, 10);
+  currentSlide = index + 1;
+  let endMargin = -imageWidth * currentSlide;
+
+  animateMarginChange(startMargin, endMargin);
+  updatePoints();
+}
