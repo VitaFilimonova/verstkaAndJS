@@ -1,42 +1,41 @@
 const rightButton = document.querySelector(".slider__arrow--right");
 const leftButton = document.querySelector(".slider__arrow--left");
-const buttons = document.querySelectorAll(".slider__arrow");
-let images = document.querySelectorAll(" .slider__slides img");
-// let slides = document.querySelector(".slider__slides");
+
 const container = document.querySelector(".slider__slides-container");
-const points = document.querySelectorAll(".point");
-console.log(images.length);
-let currentSlide = 1;
+const slides = document.querySelector(".slider__slides");
+let images = document.querySelectorAll(" .slider__slides img");
+const points = document.querySelectorAll(".slider__point");
 
 const computedStyles = getComputedStyle(container);
 const imageWidth = parseFloat(computedStyles.width);
-console.log(imageWidth);
+
+let currentSlide = 1;
 const animationSpeed = 1000;
 const pause = 1000;
 const startAnimationButton = document.querySelector(".start-button");
-const slides = document.querySelector(".slider__slides");
-const allImagesLength =
-  document.querySelectorAll(".slider__slides img").length - 1;
-let start = Date.now(); // запомнить время начала
 
 let interval;
 let isAnimating = false;
 let isAnimationInProgress = false;
+let totalSlides = images.length - 2;
 
+const num = images.length - 1;
+
+//  Before use slider set "marginLeft" and hide this moment from users via style.display = "block";
 window.onload = function () {
   slides.style.marginLeft = `-${imageWidth}px`;
   container.style.display = "block";
 };
 
-const num = images.length - 1;
+startAnimationButton.addEventListener("click", startSlider);
 
-function startSlider(item) {
+function startSlider() {
   interval = setInterval(function () {
     // if (!stopAllAnimation) {
     if (!isAnimating) {
       isAnimating = true;
 
-      let marginLeft = parseInt(getComputedStyle(slides).marginLeft, 10);
+      let marginLeft = parseInt(getComputedStyle(slides).marginLeft, 10); // Берем из стилей актуальное значение marginLeft
       let newMargin = marginLeft - imageWidth;
 
       let animationStartTime = Date.now();
@@ -45,11 +44,10 @@ function startSlider(item) {
         let currentTime = Date.now() - animationStartTime;
 
         if (currentTime < animationSpeed) {
-          let easedProgress = currentTime / animationSpeed; // Quadratic easing
+          let easedProgress = currentTime / animationSpeed;
           let currentMargin = marginLeft - easedProgress * imageWidth;
 
           slides.style.marginLeft = currentMargin + "px";
-          isAnimationInProgress = false;
 
           requestAnimationFrame(animate);
         } else {
@@ -58,7 +56,6 @@ function startSlider(item) {
           console.log(currentSlide);
           if (currentSlide === num) {
             currentSlide = 1;
-
             slides.style.marginLeft = `-${imageWidth}px`;
             stopSlider();
             updatePoints();
@@ -85,26 +82,6 @@ function startSlider(item) {
 function stopSlider() {
   clearInterval(interval);
 }
-
-startAnimationButton.addEventListener("click", startSlider);
-
-//
-function updatePoints() {
-  points.forEach((el, index) => {
-    if (index === currentSlide - 1) {
-      el.classList.add("point--active");
-    } else {
-      el.classList.remove("point--active");
-    }
-  });
-}
-
-function disableButtons(disable) {
-  leftButton.disabled = disable;
-  rightButton.disabled = disable;
-}
-
-let totalSlides = images.length - 2;
 
 function moveSlider(direction) {
   if (isAnimating) return;
@@ -156,6 +133,23 @@ function animateMarginChange(startMargin, endMargin) {
   }
 
   requestAnimationFrame(animate);
+}
+
+// Update active point
+function updatePoints() {
+  points.forEach((elem, index) => {
+    if (index === currentSlide - 1) {
+      elem.classList.add("slider__point--active");
+    } else {
+      elem.classList.remove("slider__point--active");
+    }
+  });
+}
+
+// Disable buttons and points click
+function disableButtons(disable) {
+  leftButton.disabled = disable;
+  rightButton.disabled = disable;
 }
 
 rightButton.onclick = function () {
