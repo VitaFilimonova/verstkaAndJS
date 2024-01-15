@@ -374,6 +374,18 @@ mark {
     overflow: hidden;
 }
 
+.animated-section__phone-screen-img {
+    position: absolute;
+    overflow: hidden;
+    /*margin: 0 auto;*/
+    z-index: 19;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    align-items: center;
+}
+
 .animated-section__phone-video,
 .animated-section__phone-img {
 
@@ -1314,9 +1326,6 @@ p a {
         gap: 30px;
     }
 
-    .partners__shops img {
-        width: min(15em, 45%);
-    }
 }
 
 @media (min-width: 980px) and (max-width: 1200px) {
