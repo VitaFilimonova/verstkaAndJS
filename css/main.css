@@ -758,6 +758,7 @@ label {
 .partners__shops {
     display: flex;
     flex-direction: row;
+    align-items: center;
     justify-content: space-between;
     gap: min(10px, 5%)
 }
@@ -1336,7 +1337,6 @@ label {
     .partners__shops {
         flex-wrap: wrap;
         justify-content: space-between;
-        align-items: center;
         row-gap: 30px;
     }
 }
