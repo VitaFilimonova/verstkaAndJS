@@ -1,7 +1,5 @@
 const overlay = document.querySelector(".overlay");
-
 const globalError = document.querySelector(".contacts-form__global-error");
-
 const inputs = document.querySelectorAll(".contacts-form__input-field");
 
 // Сookies

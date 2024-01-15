@@ -1,30 +1,30 @@
 @import url("https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;900&display=swap");
 
 .button {
-  background-color: var(--primary-01);
-  border-radius: 16px;
-  color: var(--grayscale-07);
-  padding: 16px 30px;
-  font-family: var(--font-semibold);
-  font-size: 20px;
-  font-weight: 600;
-  overflow: hidden;
-  transition: background-color .2s ease-in-out, border-color .2s ease, color .2s ease, fill .2s ease, transform .2s ease-in-out;
-display: inline-block;
+    background-color: var(--primary-01);
+    border-radius: 16px;
+    color: var(--grayscale-07);
+    padding: 16px 30px;
+    font-family: var(--font-semibold);
+    font-size: 20px;
+    font-weight: 600;
+    overflow: hidden;
+    transition: background-color .2s ease-in-out, border-color .2s ease, color .2s ease, fill .2s ease, transform .2s ease-in-out;
+    transform-origin: center;
 }
 
 .button:hover {
-  background-color: var(--grayscale-01);
-  border: 2px solid var(--primary-01);
-  transition: background-color .2s ease-in-out,border-color .2s ease,color .2s ease,fill .2s ease,transform .2s ease-in-out;
-  transform: scale(1.07);
-  /*margin: -2px;*/
-  will-change: transform;
+    background-color: var(--grayscale-01);
+    border: 2px solid var(--primary-01);
+    transition: background-color .2s ease-in-out, border-color .2s ease, color .2s ease, fill .2s ease, transform .2s ease-in-out;
+    transform: scale(1.07);
+    margin: -2px;
+    will-change: transform;
 }
 
 .button--no-border:hover {
-  border: none;
-  /*margin: 0;*/
+    border: none;
+    margin: 0;
 }
 
 .button:hover:after {
@@ -32,104 +32,115 @@ display: inline-block;
     z-index: -1;
 }
 
+.button:hover:active {
+    border: 2px solid var(--primary-00);
+    background-color: var(--primary-00);
+    margin: -2px;
+}
+
 .button:after {
-  content: "";
-  display: block;
-  height: 100%;
-  width: 100%;
-  position: absolute;
-  left: 0;
-  top: 0;
-  transform: translate(-100%) rotate(10deg);
-  transform-origin: top left;
-  transition: background-color .2s ease,border-color .2s ease,color .2s ease,fill .2s ease,transform .2s ease-in-out;
-  will-change: transform;
-  z-index: -3;
-  border-radius: 80em;
-  background-color: var(--grayscale-01);
-}
-
-.button:focus {
-  border: 4px solid var(--primary-03);
-  background: var(--primary-01);
-  /*margin: 0;*/
-}
-.button:focus:hover {
-  background: var(--grayscale-01);
-  border: 2px solid var(--primary-01);
-  transform-origin: center;
-margin: 4px;
-/*  transform: scale(1);*/
-}
-
-.button--no-border:focus:hover {
-  border: none;
-  /*margin: 4px;*/
+    content: "";
+    display: block;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    transform: translate(-100%) rotate(10deg);
+    transform-origin: top left;
+    transition: background-color .2s ease, border-color .2s ease, color .2s ease, fill .2s ease, transform .2s ease-in-out;
+    will-change: transform;
+    z-index: -3;
+    border-radius: 80em;
+    background-color: var(--grayscale-01);
 }
 
 .button:active {
-  background-color: var(--primary-00) !important;
-  overflow: hidden;
-  /*border: 2px solid var(--primary-00);*/
-/*transform: scale(1.07);*/
-  margin: 4px;
-  transform-origin: left top;
+    background-color: var(--primary-00) !important;
+    overflow: hidden;
+    transform: scale(1);
 }
 
 .button:active:after {
-  position: relative;
-  overflow: hidden;
-  background-color: var(--primary-00);
-  transition:  background-color .1ms linear;
-  will-change: transform;
-  transform: translate(-100%) rotate(10deg);
-  transform-origin: top left;
+    position: relative;
+    overflow: hidden;
+    background-color: var(--primary-00);
+    transition: background-color .1ms linear;
+    will-change: transform;
+    transform: translate(-100%) rotate(10deg);
+    transform-origin: top left;
 }
 
-/*.button:active:hover {*/
-/*  border: 2px solid var(--primary-00);*/
-/*  background-color: var(--primary-00);*/
+.button:focus {
+    border: 4px solid var(--primary-03);
+    background: var(--primary-01);
+    transform-origin: center;
+    transition: transform .2s ease;
+    margin: -4px;
+}
 
-/*}*/
+.button:focus:hover {
+    background: var(--grayscale-01);
+    border: 2px solid var(--primary-01);
+    transform-origin: center;
+    margin: -2px;
+    transition: transform .2s ease-in-out, background-color .2s ease;
+}
+
+.button--no-border:focus:hover {
+    border: none;
+    margin: 0;
+}
 
 .button:disabled {
-  background-color: var(--grayscale-03);
-  pointer-events: none;
+    background-color: var(--grayscale-03);
+    pointer-events: none;
 }
 
-
-
 .button--secondary {
-  background-color: var(--grayscale-07);
-  color: var(--grayscale-00);
-  border: 2px solid var(--primary-01);
-  /*margin: -2px;*/
+    background-color: var(--grayscale-07);
+    color: var(--grayscale-00);
+    border: 2px solid var(--primary-01);
 }
 
 .button--secondary:hover {
-  background-color: var(--primary-04);
-
+    background-color: var(--primary-04);
+    margin: 0;
 }
 
-.button--secondary:hover:after{
-  background-color: var(--primary-04);
-  transform: translate(0);
-  z-index: -1;
+.button--secondary:hover:active {
+    background-color: var(--grayscale-07);
+    margin: 0;
+}
+
+.button--secondary:hover:after {
+    background-color: var(--primary-04);
 }
 
 .button--secondary:after {
-  background-color: var(--primary-04);
-  opacity: 0.2;
-  z-index: 1;
+    background-color: var(--primary-04);
+    opacity: 0.2;
+    z-index: 1;
+}
+
+.button--secondary:active {
+    background-color: var(--grayscale-07) !important;
+}
+
+
+.button--secondary:focus {
+    margin: -2px;
+    background-color: var(--grayscale-07);
+    border: 4px solid var(--primary-01);
+}
+
+.button--secondary:focus:hover {
+    margin: 0;
+    background-color: var(--primary-04);
 }
 
 .button--secondary:disabled {
-  background-color: var(--grayscale-07);
-  border: 2px solid var(--grayscale-03);
-  color: var(--grayscale-03);
+    background-color: var(--grayscale-07);
+    border: 2px solid var(--grayscale-03);
+    color: var(--grayscale-03);
 }
-.button-secondary:before {
-  background: transparent;
-}
-
-
