@@ -239,7 +239,8 @@ mark {
     position: absolute;
     right: 0;
     bottom: 0;
-    width: min(90%, 550px);
+    width: min(80%, 550px);
+
 }
 
 #About,
@@ -1155,7 +1156,7 @@ p a {
         justify-content: right;
     }
 
-    .banner__img-elem {
+    .banner__img-elem-decor {
         position: initial;
         /*right: 0;*/
     }
@@ -1359,7 +1360,7 @@ p a {
 
 @media (max-width: 1200px) {
 
-    .banner__img-elem {
+    .banner__img-elem-decor {
         position: relative;
 
     }

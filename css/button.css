@@ -106,9 +106,4 @@ margin: 2px;
   pointer-events: none;
 }
 
-.button:disabled {
-  background-color: var(--grayscale-03);
-  color: var(--grayscale-03);
-  pointer-events: none;
-}
 

@@ -65,13 +65,14 @@
         </div>
     </div>
     <div class="banner__img">
+        <img class="banner__img-elem banner__img-elem-decor " src="images/banner/orange_decor.svg" alt="orange-decor">
         <picture>
-            <source type="image/webp" srcset="images/banner/banner.webp">
+            <source type="image/webp" srcset="images/banner/banner@1x.webp 1x, images/banner/banner@2x.webp 2x">
             <img
                     class="banner__img-elem"
-                    src="images/banner@1x.jpg"
-                    srcset="images/banner@2x.jpg"
-                    alt="orange-pattern-and-woman"
+                    src="images/banner/banner@1x.jpg"
+                    srcset="images/banner/banner@2x.jpg 2x"
+                    alt="woman"
             >
         </picture>
 
@@ -408,12 +409,26 @@
                     <button class="button button-sales button-footer">Contact sales</button>
                     <div class="footer__button">
                         <a class="app-store" href="#">
-                            <img src="images/appstore.svg" alt="appstore">
+                            <picture>
+<!--                                <source type="image/webp" srcset="images/apps/appstore@1x.webp 1x, images/apps/appstore@2x.webp 2x">-->
+                                <img
+                                        src="images/apps/appstore@1x.png"
+                                        srcset="images/apps/appstore@2x.png 2x"
+                                        alt="appstore"
+                                >
+                            </picture>
                         </a>
                     </div>
                     <div class="footer__button">
                         <a class="google-play" href="#">
-                            <img src="images/googleplay.svg" alt="googleplay">
+                            <picture>
+<!--                                <source type="image/webp" srcset="images/apps/googleplay@1x.webp 1x, images/apps/googleplay@2x.webp 2x">-->
+                                <img
+                                        src="images/apps/googleplay@1x.png"
+                                        srcset="images/apps/googleplay@2x.png 2x"
+                                        alt="googleplay"
+                                >
+                            </picture>
                         </a>
                     </div>
                 </div>
