@@ -1,0 +1,198 @@
+@import "./reset.css";
+@import url('https://fonts.googleapis.com/css2?family=Anybody&display=swap');
+
+:root {
+    --global-green: #2d6718;
+    --global-white: #ffffff;
+    --global-font: 'Anybody', sans-serif;
+    --global-grey: #d0cece;
+    --background: rgba(161, 255, 91, 0.38);
+
+    --btn-size: 50px;
+    --btn-mobile-size: 30px;
+    --btn-hover-color: #749f75;
+    --btn-hover: rgba(192, 243, 165, 0.83);
+    --btn-hover-border-color: #fff;
+
+    --container-width: 900px;
+    --container-tab-width: 550px;
+    --container-mobile-width: 350px;
+}
+
+body {
+    background-color: var(--background);
+}
+
+.slider-container {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    max-width: 1500px;
+    margin: 0 auto;
+}
+
+.slider {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.slider__slides-container {
+    overflow: hidden;
+    position: relative;
+    width: var(--container-width);
+    justify-items: center;
+    display: none;
+}
+
+.slider__slides {
+    display: flex;
+    flex-direction: row;
+    width: max-content;
+}
+
+.slider__slides img {
+    width: var(--container-width);
+    border-radius: 15px;
+    object-fit: cover;
+    background-color: var(--global-white);
+}
+
+.slider__points {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9;
+}
+
+.slider__point {
+    width: 15px;
+    height: 15px;
+    border: 2px solid var(--global-green);
+    border-radius: 50%;
+    margin: 20px 10px;
+}
+
+.slider__point:hover {
+    background-color: var(--global-grey);
+    cursor: pointer;
+}
+
+.slider__point--active {
+    background-color: var(--global-green);
+}
+
+
+.slider__point--active:hover {
+    background-color: var(--global-green);
+    pointer-events: none;
+}
+
+.disable {
+    pointer-events: none;
+}
+
+.slider__arrow {
+    position: absolute;
+    top: 45%;
+
+    width: var(--btn-size);
+    height: var(--btn-size);
+    border: 2px solid var(--global-green);
+    border-radius: 30%;
+    background: var(--global-white);
+
+    color: var(--global-green);
+    cursor: pointer;
+    transition: all 0.25s ease-in-out;
+}
+
+.slider__arrow:hover {
+    background: transparent;
+    border-color: var(--btn-hover-border-color);
+    color: var(--btn-hover-color);
+}
+
+.slider__arrow:active {
+    background: var(--btn-hover-color);
+    border-color: var(--btn-hover-border-color);
+}
+
+.slider__arrow--left {
+    left: 15%;
+}
+
+.slider__arrow--right {
+    right: 15%;
+}
+
+.slider__arrow-image {
+    width: 20px;
+    height: auto;
+}
+
+.slider__arrow--left .slider__arrow-image {
+    transform: rotate(180deg);
+}
+
+.slider__arrow:disabled {
+    pointer-events: none;
+    color: grey;
+    background-color: var(--global-grey);
+}
+
+.start-button {
+    color: var(--global-white);
+    font-family: var(--global-font);
+    background-color: var(--global-green);
+    align-items: center;
+    padding: 16px 30px;
+    border-radius: 12px;
+    text-transform: uppercase;
+    transition: all 0.25s ease-in-out;
+}
+
+.start-button:hover {
+    background-color: var(--global-white);
+    color: var(--global-green);
+}
+
+.start-button:active {
+    background: var(--btn-hover-color);
+    border-color: var(--btn-hover-border-color);
+}
+.start-button:disabled {
+    pointer-events: none;
+    background: var(--btn-hover-color);
+    border-color: var(--btn-hover-border-color);
+    transition: all 0.15s ease-in-out;
+}
+
+@media (max-width: 1100px) {
+    .slider__slides-container {
+        width: var(--container-tab-width);
+    }
+
+    .slider__slides img {
+        width: var(--container-tab-width);
+    }
+}
+
+@media (max-width: 650px) {
+    .slider__slides-container {
+        width: var(--container-mobile-width);
+    }
+
+    .slider__slides img {
+        width: var(--container-mobile-width);
+    }
+
+    .slider__arrow {
+        width: var(--btn-mobile-size);
+        height: var(--btn-mobile-size);
+    }
+}
