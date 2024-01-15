@@ -159,7 +159,6 @@ body {
 .start-button:hover {
     background-color: var(--global-white);
     color: var(--global-green);
-    /*transition: all 0.25s ease-in-out;*/
 }
 
 .start-button:active {
